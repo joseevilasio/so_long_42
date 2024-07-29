@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_error_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/07/27 22:21:44 by joneves-         ###   ########.fr       */
+/*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
+/*   Updated: 2024/07/27 22:24:03 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void	ft_error_handler(char *error, int signal, int mode)
 {
-	if (argc == 2 && ft_isvalid(argv[1]) == 0)
-	{		
-		ft_printf("> %s < executando...", argv[1]);
+	if (mode == 0)
+	{
+		// if (cmds)
+		// 	ft_free_args(cmds);
+		perror(error);
+		exit (signal);
 	}
 	else
-		ft_error_handler(strerror(EINVAL), ERROR_ARGUMENTS, 1);
-	return (0);
+	{
+		ft_printf("Error: %s\n", error);
+		exit (signal);
+	}
 }

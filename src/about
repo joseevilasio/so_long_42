@@ -1,0 +1,2 @@
+free vai coletara mallocs
+enquanto o valgrind tenta gerar leak
