@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:47:14 by joneves-          #+#    #+#             */
-/*   Updated: 2024/07/29 22:19:50 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/07/29 23:08:40 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,16 +103,20 @@ static int	check_items(char *pathname)
 			player++;
 		if (ft_strchr(line, 'C'))
 			collectible++;
-		if (ft_strchr(line, 'C'))
+		if (ft_strchr(line, 'E'))
 			exit++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
-	if (player > 1 || exit > 1 || collectible < 1)
+	if (player != 1 || exit != 1 || collectible < 1)
 		ft_error_handler("Invalid items.", ERROR_INVALID_TYPE, 1, NULL);
 	return (0);
 }
+
+//criar funcao para popular map[width][height]
+//refatorar as funcoes para utilizar o map
+//implentar algoritmo flood fill
 
 int	ft_ismapvalid(char *map)
 {
