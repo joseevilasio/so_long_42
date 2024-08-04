@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/07/29 21:03:03 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/04 21:41:52 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,25 +20,6 @@ int	ft_open(char *pathname)
 	if (fd == -1)
 		ft_error_handler("Error", ERROR_OPEN, 0, NULL);
 	return (fd);
-}
-
-size_t	ft_countlines(char *pathname)
-{
-	int		fd;
-	char	*line;
-	size_t	lines;
-	
-	lines = 0;
-	fd = ft_open(pathname);
-	line = get_next_line(fd);
-	while(line)
-	{
-		free(line);
-		line = get_next_line(fd);
-		lines++;
-	}
-	close(fd);
-	return (lines);
 }
 
 char	*ft_strremove(char *str, char *target)

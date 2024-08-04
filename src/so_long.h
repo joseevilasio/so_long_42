@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/07/29 23:03:53 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/04 14:18:55 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,18 @@
 
 # define SUCCESS 0
 # define ERROR_ARGUMENTS 1
-# define ERROR_INVALID_TYPE 2
+# define ERROR_TYPE 2
 # define ERROR_OPEN 3
 # define ERROR_READ 4
-# define ERROR_INVALID_MAP 3
+# define ERROR_MAP 5
+# define ERROR_MALLOC 6
 
-int		ft_ismapvalid(char *map);
 void	ft_error_handler(char *error, int signal, int mode, char *str);
+int	    ft_loadmap(char *pathname);
+int 	ft_ismapvalid(char *map);
 
 // Utils
 int		ft_open(char *pathname);
-size_t	ft_countlines(char *pathname);
 char	*ft_strremove(char *str, char *target);
 
 #endif //SO_LONG_H

@@ -10,9 +10,9 @@ CFLAGS := -Wall -Wextra -Werror -g
 
 LIBFT := libft
 
-SRCS := ft_parser.c ft_ismapvalid.c ft_error_handler.c solong_utils.c \
+SRCS := ft_parser.c ft_loadmap.c ft_error_handler.c solong_utils.c \
 
-OBJS := ft_parser.o ft_ismapvalid.o ft_error_handler.o solong_utils.o \
+OBJS := ft_parser.o ft_loadmap.o ft_error_handler.o solong_utils.o \
 
 # SRCS_BONUS := bonus/pipex_utils_bonus.c bonus/ft_parser_bonus.c  \
 # 			bonus/ft_heredoc_bonus.c\
