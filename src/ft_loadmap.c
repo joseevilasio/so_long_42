@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/04 22:08:10 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/08 09:01:38 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,14 @@ static int	ft_checkpathname(char *pathname)
 	if (filename == NULL || ft_strlen(filename) != 4)
 		ft_error_handler("Invalid file type.", ERROR_TYPE, 1, NULL);
 	fd = ft_open(pathname);
-	if (read(fd, NULL, 0) == -1)
-	{
-		close(fd);
-		ft_error_handler("Error", ERROR_READ, 0, NULL);
-	}
 	return (fd);
-}
-
-/* Split de char de um str */
-static void	put_point(char *str, int *map_line)
-{
-	int	i;
-
-	i = 0;
-	while(str[i])
-	{
-		map_line[i] = str[i];
-		i++;
-	}
 }
 
 static void	ft_createmap(char *pathname, int height, int **map)
 {
 	int		fd;
 	int		i;
+	int		z;
 	char	*line;
 
 	i = 0;
@@ -54,7 +37,12 @@ static void	ft_createmap(char *pathname, int height, int **map)
 	line = ft_strremove(get_next_line(fd), "\n");
 	while(line && i < height)
 	{
-		put_point(line, map[i]);
+		z = 0;
+		while (line[z])
+		{
+			map[i][z] = line[z];
+			z++;
+		}
 		i++;
 		free(line);
 		line = ft_strremove(get_next_line(fd), "\n");
@@ -114,6 +102,38 @@ static size_t	*ft_mapsize(int fd)
 	return (size);
 }
 
+static int	ft_checkitems(int **map, size_t *size)
+{
+	int		player;
+	int		collectible;
+	int		exit;
+	size_t	z;
+	size_t	i;
+
+	player = 0;
+	collectible = 0;
+	exit = 0;
+	i = 0;
+	while (i < size[0])
+	{
+		z = 0;
+		while (z < size[1])
+		{
+			if (map[i][z] == 'P')
+				player++;
+			if (map[i][z] == 'C')
+				collectible++;
+			if (map[i][z] == 'E')
+				exit++;
+			z++;
+		}
+		i++;
+	}
+	if (player != 1 || exit != 1 || collectible < 1)
+		ft_error_handler("Invalid items.", ERROR_MAP, 1, NULL);
+	return (0);
+}
+
 int	ft_loadmap(char *pathname)
 {
 	size_t	*size;
@@ -123,6 +143,7 @@ int	ft_loadmap(char *pathname)
 
 	fd = ft_checkpathname(pathname);
 	size = ft_mapsize(fd);
+	
 	map = (int **) malloc(size[0] * sizeof(int *));
 	while (i < size[0])
 	{
@@ -133,11 +154,13 @@ int	ft_loadmap(char *pathname)
 	}
 	
 	ft_createmap(pathname, size[0], map);
+	ft_checkitems(map, size);
+	
 	ft_printf("-h-%d -w-%d\n", size[0], size[1]);
 	
 	//apenas para imprimir o mapa
-	i = 0;
 	size_t z;
+	i = 0;
 	while (i < size[0])
 	{
 		z = 0;
@@ -145,6 +168,18 @@ int	ft_loadmap(char *pathname)
 			ft_printf("%c", map[i][z++]);
 		ft_printf("\n");
 		i++;
-	}	
+	}
+
+	ft_floodfill(map, size, 5, 2);
+
+	i = 0;
+	while (i < size[0])
+	{
+		z = 0;
+		while (z < size[1])
+			ft_printf("%c", map[i][z++]);
+		ft_printf("\n");
+		i++;
+	}
 	return (0);
 }

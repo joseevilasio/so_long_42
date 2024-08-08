@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/04 14:18:55 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/08 09:02:12 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 void	ft_error_handler(char *error, int signal, int mode, char *str);
 int	    ft_loadmap(char *pathname);
-int 	ft_ismapvalid(char *map);
+void	ft_floodfill(int **map, size_t *size, int x, int y);
 
 // Utils
 int		ft_open(char *pathname);
