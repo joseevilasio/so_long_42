@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/03 23:36:22 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/11 13:34:40 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	main(int argc, char **argv)
 {
-	// int		**map;
-
-	// map = NULL;
 	if (argc == 2)
 	{
 		ft_loadmap(argv[1]);

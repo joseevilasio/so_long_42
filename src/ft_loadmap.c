@@ -5,59 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/08 09:01:38 by joneves-         ###   ########.fr       */
+/*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
+/*   Updated: 2024/08/11 14:14:15 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/* Verifica se a extensa esta correta, se o arquivo existe e pode ser lido */
-static int	ft_checkpathname(char *pathname)
+static void	ft_create_matrix(char *pathname, int height, int **map)
 {
-	char	*filename;
+	int		y;
+	int		x;
 	int		fd;
-
-	filename = ft_strnstr(pathname, ".ber", ft_strlen(pathname));
-	if (filename == NULL || ft_strlen(filename) != 4)
-		ft_error_handler("Invalid file type.", ERROR_TYPE, 1, NULL);
-	fd = ft_open(pathname);
-	return (fd);
-}
-
-static void	ft_createmap(char *pathname, int height, int **map)
-{
-	int		fd;
-	int		i;
-	int		z;
 	char	*line;
 
-	i = 0;
+	y = 0;
 	fd = ft_open(pathname);
 	line = ft_strremove(get_next_line(fd), "\n");
-	while(line && i < height)
+	while (line && y < height)
 	{
-		z = 0;
-		while (line[z])
+		x = 0;
+		while (line[x])
 		{
-			map[i][z] = line[z];
-			z++;
+			map[y][x] = line[x];
+			x++;
 		}
-		i++;
+		y++;
 		free(line);
 		line = ft_strremove(get_next_line(fd), "\n");
 	}
 	close(fd);
 }
 
-static int	ft_checkwall(char *line, size_t width, size_t height)
+static void	ft_checkwall(char *line, int x, int y)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (ft_strlen(line) != width)
-		ft_error_handler("Invalid map, rectangle fail", ERROR_MAP, 1, line);	
-	if (height == 1 || i == height - 1)
+	if ((int) ft_strlen(line) != x)
+		ft_error_handler("Invalid map, rectangle fail", ERROR_MAP, 1, line);
+	if (y == 1 || i == y - 1)
 	{
 		while (line[i])
 		{
@@ -69,117 +56,91 @@ static int	ft_checkwall(char *line, size_t width, size_t height)
 	}
 	else
 	{
-		if (line[0] != '1' || line[width - 1] != '1')
+		if (line[0] != '1' || line[x - 1] != '1')
 			ft_error_handler("Invalid map, wall fail", ERROR_MAP, 1, line);
 	}
-	return (0);
 }
 
-/* Retorna o tamanho do mapa em altura e largura */
-static size_t	*ft_mapsize(int fd)
+static void	ft_checkitems(char *line, t_init *map_init, int y)
+{
+	int	x;
+
+	x = 0;
+	while (line[x])
+	{
+		if (line[x] == 'P')
+		{
+			map_init->pos_p[0] = y;
+			map_init->pos_p[1] = x;
+			map_init->p++;
+		}
+		if (line[x] == 'C')
+			map_init->c++;
+		if (line[x] == 'E')
+			map_init->e++;
+		x++;
+	}
+}
+
+static void	ft_mapsize(char *pathname, t_init *map_init)
 {
 	char	*line;
-	size_t	*size;
+	int		fd;
 
-	size = (size_t *) malloc(2 * sizeof(size_t));
-	if (!size)
-		ft_error_handler("Error", ERROR_MALLOC, 0, NULL);
-	size[0] = 1; //height
+	fd = ft_open(pathname);
 	line = ft_strremove(get_next_line(fd), "\n");
-	size[1] = ft_strlen(line); //width
-	while(line)
+	map_init->size[1] = (int) ft_strlen(line); //width
+	while (line)
 	{
-		ft_checkwall(line, size[1], size[0]);
+		ft_checkwall(line, map_init->size[1], map_init->size[0]);
+		ft_checkitems(line, map_init, map_init->size[0]);
 		free(line);
 		line = ft_strremove(get_next_line(fd), "\n");
 		if (!line)
 			break ;
-		size[0]++;
+		map_init->size[0]++;
 	}
 	close(fd);
-	if (size[0] <= 1 || size[1] <= 1)
+	if (map_init->p != 1 || map_init->e != 1 || map_init->c < 1)
+		ft_error_handler("Invalid items", ERROR_MAP, 1, NULL);
+	if (map_init->size[0] <= 1 || map_init->size[1] <= 1)
 		ft_error_handler("Invalid map, empty map", ERROR_MAP, 1, NULL);
-	return (size);
-}
-
-static int	ft_checkitems(int **map, size_t *size)
-{
-	int		player;
-	int		collectible;
-	int		exit;
-	size_t	z;
-	size_t	i;
-
-	player = 0;
-	collectible = 0;
-	exit = 0;
-	i = 0;
-	while (i < size[0])
-	{
-		z = 0;
-		while (z < size[1])
-		{
-			if (map[i][z] == 'P')
-				player++;
-			if (map[i][z] == 'C')
-				collectible++;
-			if (map[i][z] == 'E')
-				exit++;
-			z++;
-		}
-		i++;
-	}
-	if (player != 1 || exit != 1 || collectible < 1)
-		ft_error_handler("Invalid items.", ERROR_MAP, 1, NULL);
-	return (0);
 }
 
 int	ft_loadmap(char *pathname)
 {
-	size_t	*size;
+	t_init	map_init;
 	int		**map;
-	int		fd;
-	size_t		i = 0;
+	int		i;
 
-	fd = ft_checkpathname(pathname);
-	size = ft_mapsize(fd);
-	
-	map = (int **) malloc(size[0] * sizeof(int *));
-	while (i < size[0])
+	i = 0;
+	ft_init(&map_init);
+	ft_mapsize(pathname, &map_init);
+	map = (int **) malloc(map_init.size[0] * sizeof(int *));
+	while (i < map_init.size[0])
 	{
-		map[i] = (int *) malloc(size[1] * sizeof(int));
+		map[i] = (int *) malloc(map_init.size[1] * sizeof(int));
 		if (!map[i])
+		{
+			while (--i >= 0)
+				free(map[i]);
 			ft_error_handler("Error", ERROR_MALLOC, 0, NULL);
-		i++; //verificar para resolver caso de erro no malloc
-	}
-	
-	ft_createmap(pathname, size[0], map);
-	ft_checkitems(map, size);
-	
-	ft_printf("-h-%d -w-%d\n", size[0], size[1]);
-	
-	//apenas para imprimir o mapa
-	size_t z;
-	i = 0;
-	while (i < size[0])
-	{
-		z = 0;
-		while (z < size[1])
-			ft_printf("%c", map[i][z++]);
-		ft_printf("\n");
+		}
 		i++;
 	}
-
-	ft_floodfill(map, size, 5, 2);
-
-	i = 0;
-	while (i < size[0])
-	{
-		z = 0;
-		while (z < size[1])
-			ft_printf("%c", map[i][z++]);
-		ft_printf("\n");
-		i++;
-	}
+	ft_create_matrix(pathname, map_init.size[0], map);
+	ft_printf("-h-%d -w-%d\n", map_init.size[0], map_init.size[1]);
+	ft_printmap(map, map_init);
+	ft_floodfill(map, &map_init, map_init.pos_p[0], map_init.pos_p[1]);
+	ft_printf("Coletaveis: %d Exit: %d\n", map_init.ff_c, map_init.ff_e);
+	if (map_init.ff_c != map_init.c || map_init.ff_e != 1)
+		ft_error_handler("Invalid map, without exit", ERROR_MAP, 1, NULL);
+	ft_printf("\n\n");
+	ft_printmap(map, map_init);
+	while (i--)
+		free(map[i]);
+	free(map);
+	free(map_init.size);
+	free(map_init.pos_p);
 	return (0);
 }
