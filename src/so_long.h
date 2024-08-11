@@ -6,14 +6,15 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/11 13:34:30 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/11 21:01:04 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include "libft/libft.h"
+# include "libs/libft/libft.h"
+# include "libs/minilibx-linux/mlx.h"
 # include <errno.h>
 # include <string.h>
 # include <fcntl.h>

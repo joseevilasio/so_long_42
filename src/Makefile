@@ -8,7 +8,9 @@ AR := ar rcs
 
 CFLAGS := -Wall -Wextra -Werror -g
 
-LIBFT := libft
+MLXFLAGS = -L ./libs/minilibx-linux -lm -lmlx -Ilmlx -lXext -lX11
+
+LIBFT := libs/libft
 
 SRCS := ft_loadmap.c ft_floodfill.c ft_error_handler.c so_long_utils.c \
 
@@ -31,7 +33,7 @@ $(OBJS): $(SRCS)
 $(NAME): $(OBJS)
 	make all -C $(LIBFT)
 	ar rcs $(NAME).a ./*.o
-	$(CC) $(CFLAGS) $(NAME).c -o $(NAME) $(NAME).a $(LIBFT)/$(LIBFT).a
+	$(CC) $(NAME).c -o $(NAME) $(NAME).a $(LIBFT)/libft.a $(MLXFLAGS)
 
 # bonus: $(OBJS_BONUS)
 # 	make all -C $(LIBFT)
