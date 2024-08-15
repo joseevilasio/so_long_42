@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/11 14:14:15 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/15 21:45:29 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ static void	ft_mapsize(char *pathname, t_init *map_init)
 		ft_error_handler("Invalid map, empty map", ERROR_MAP, 1, NULL);
 }
 
-int	ft_loadmap(char *pathname)
+int	**ft_loadmap(char *pathname)
 {
 	t_init	map_init;
 	int		**map;
@@ -139,8 +139,8 @@ int	ft_loadmap(char *pathname)
 	ft_printmap(map, map_init);
 	while (i--)
 		free(map[i]);
-	free(map);
+	// free(map);
 	free(map_init.size);
 	free(map_init.pos_p);
-	return (0);
+	return (map);
 }

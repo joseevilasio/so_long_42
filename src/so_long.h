@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/11 21:01:04 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/15 21:45:09 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <errno.h>
 # include <string.h>
 # include <fcntl.h>
+# include <X11/keysym.h>
 
 # define SUCCESS 0
 # define ERROR_ARGUMENTS 1
@@ -39,7 +40,7 @@ typedef struct s_init
 }	t_init;
 
 void	ft_error_handler(char *error, int signal, int mode, char *str);
-int		ft_loadmap(char *pathname);
+int		**ft_loadmap(char *pathname);
 void	ft_floodfill(int **map, t_init *map_init, int x, int y);
 
 // Utils
@@ -47,5 +48,10 @@ int		ft_open(char *pathname);
 char	*ft_strremove(char *str, char *target);
 void	ft_init(t_init *initial);
 void	ft_printmap(int **map, t_init map_init);
+
+/* 
+https://www.oreilly.com/library/view/xlib-reference-manual/9780937175262/16_appendix-h.html
+Utilizar keysym para mapear teclas
+*/
 
 #endif //SO_LONG_H
