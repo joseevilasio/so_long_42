@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long_utils.c                                    :+:      :+:    :+:   */
+/*   loadmap_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/11 13:16:23 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/18 16:06:33 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	ft_open(char *pathname)
+int	ft_open(char *pathname, t_data *data)
 {
 	int		fd;
 	char	*filename;
 
 	filename = ft_strnstr(pathname, ".ber", ft_strlen(pathname));
 	if (filename == NULL || ft_strlen(filename) != 4)
-		ft_error_handler("Invalid file type.", ERROR_TYPE, 1, NULL);
+		ft_error_handler("Invalid file type.", ERROR_TYPE, NULL, data);
 	fd = open(pathname, O_RDONLY);
 	if (fd == -1)
-		ft_error_handler("Error", ERROR_OPEN, 0, NULL);
+		ft_error_handler("Error", ERROR_OPEN, NULL, data);
 	return (fd);
 }
 
@@ -32,40 +32,58 @@ char	*ft_strremove(char *str, char *target)
 
 	new_str = ft_strtrim(str, target);
 	if (!new_str)
+	{
+		free(new_str);
 		return (str);
+	}
 	free(str);
 	return (new_str);
 }
 
-void	ft_init(t_init *initial)
+void	ft_data_init(t_data *data)
 {
-	initial->size = (int *) malloc(2 * sizeof(int));
-	if (!initial->size)
-		ft_error_handler("Error", ERROR_MALLOC, 0, NULL);
-	initial->pos_p = (int *) malloc(2 * sizeof(int));
-	if (!initial->size)
-		ft_error_handler("Error", ERROR_MALLOC, 0, NULL);
-	initial->p = 0;
-	initial->e = 0;
-	initial->c = 0;
-	initial->ff_e = 0;
-	initial->ff_c = 0;
-	initial->size[0] = 1;
-	initial->size[1] = 0;
+	data->width = 0;
+	data->height = 1;
+	data->pplayer_h = 0;
+	data->pplayer_w = 0;
+	data->p = 0;
+	data->e = 0;
+	data->c = 0;
+	data->ff_e = 0;
+	data->ff_c = 0;
+	data->map = NULL;
 }
 
-void	ft_printmap(int **map, t_init map_init)
+void	ft_printmap(char **source, int height, int width)
 {
 	int	y;
 	int	x;
 
 	y = 0;
-	while (y < map_init.size[0])
+	ft_printf("\n PRINT MAP \n");
+	while (y < height)
 	{
 		x = 0;
-		while (x < map_init.size[1])
-			ft_printf("%c", map[y][x++]);
+		while (x < width)
+			ft_printf("%c", source[y][x++]);
 		ft_printf("\n");
 		y++;
 	}
+}
+
+void	ft_floodfill(char **map, t_data *data, int x, int y)
+{
+	if (x < 0 || x >= data->width || y < 0 || y >= data->height)
+		return ;
+	if (map[y][x] == '1')
+		return ;
+	if (map[y][x] == 'E')
+		data->ff_e++;
+	if (map[y][x] == 'C')
+		data->ff_c++;
+	map[y][x] = '1';
+	ft_floodfill(map, data, x + 1, y);
+	ft_floodfill(map, data, x - 1, y);
+	ft_floodfill(map, data, x, y + 1);
+	ft_floodfill(map, data, x, y - 1);
 }

@@ -12,9 +12,10 @@ MLXFLAGS = -L ./libs/minilibx-linux -lm -lmlx -Ilmlx -lXext -lX11
 
 LIBFT := libs/libft
 
-SRCS := ft_loadmap.c ft_floodfill.c ft_error_handler.c so_long_utils.c \
+SRCS := src/so_long.c src/ft_loadmap.c src/so_long_utils.c\
+		src/free_error_handler.c src/loadmap_utils.c src/ft_render.c\
 
-OBJS := ft_loadmap.o ft_floodfill.o ft_error_handler.o so_long_utils.o \
+# OBJS := ft_loadmap.o ft_floodfill.o ft_error_handler.o so_long_utils.o ft_render.o\
 
 # SRCS_BONUS := bonus/pipex_utils_bonus.c bonus/ft_parser_bonus.c  \
 # 			bonus/ft_heredoc_bonus.c\
@@ -30,26 +31,19 @@ $(OBJS): $(SRCS)
 # $(OBJS_BONUS): $(SRCS_BONUS)
 # 	$(CC) $(CFLAGS) -c $*.c -o $@
 
-$(NAME): $(OBJS)
+$(NAME):
 	make all -C $(LIBFT)
-	ar rcs $(NAME).a ./*.o
-	$(CC) $(NAME).c -o $(NAME) $(NAME).a $(LIBFT)/libft.a $(MLXFLAGS)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(MLXFLAGS) $(LIBFT)/libft.a
 
 # bonus: $(OBJS_BONUS)
 # 	make all -C $(LIBFT)
-# 	ar rcs bonus/$(NAME).a bonus/*.o
 # 	$(CC) $(CFLAGS) bonus/$(NAME)_bonus.c -o $(NAME) bonus/$(NAME).a $(LIBFT)/$(LIBFT).a
 
 clean:
 	make clean -C $(LIBFT)
-	rm -f ./*.o
-	rm -f ./bonus/*.o
 
 fclean:	clean
 	make fclean -C $(LIBFT)
-	rm -f ./*.a
-	rm -f ./bonus/*.a
 	rm -f $(NAME)
-	rm -f ./bonus/$(NAME)
 
 re:	fclean all
