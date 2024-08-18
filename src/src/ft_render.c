@@ -6,45 +6,49 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:47:34 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/18 14:39:43 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:48:14 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void ft_render(void *mlx, void *window, char **map, int map_width, int map_height)
+void	ft_image_init(t_data *data)
 {
-	int cell_width = 80;
-	int cell_height = 80;
-	void *wall_texture = mlx_xpm_file_to_image(mlx, "./textures/wall.xpm", &cell_width, &cell_height);
-	void *collectable_texture = mlx_xpm_file_to_image(mlx, "./textures/coletavel.xpm", &cell_width, &cell_height);
-	void *player_texture = mlx_xpm_file_to_image(mlx, "./textures/player.xpm", &cell_width, &cell_height);
-	void *exit_texture = mlx_xpm_file_to_image(mlx, "./textures/exit.xpm", &cell_width, &cell_height);
-	void *empty_texture = mlx_xpm_file_to_image(mlx, "./textures/space.xpm", &cell_width, &cell_height);
+	int	size;
+
+	size = 80;
+	data->img_size = size;
+	data->img_wall = mlx_xpm_file_to_image(data->mlx, WALL, &size, &size);
+	data->img_coll = mlx_xpm_file_to_image(data->mlx, COLL, &size, &size);
+	data->img_player = mlx_xpm_file_to_image(data->mlx, PLAYER, &size, &size);
+	data->img_exit = mlx_xpm_file_to_image(data->mlx, EXIT, &size, &size);
+	data->img_empty = mlx_xpm_file_to_image(data->mlx, EMPTY, &size, &size);
+}
+
+void	ft_render_background(t_data *data)
+{
 	int	line;
 	int	column;
 	int x;
 	int y;
 
 	line = 0;
-	while (line < map_height)
+	ft_image_init(data);
+	while (data->map[line])
 	{
-		column = 0;
-		while (column < map_width)
+		column = 0;	
+		while (data->map[line][column])
 		{
-			x = column * cell_width;
-			y = line * cell_height;
-			
-			if (map[line][column] == '1')
-				mlx_put_image_to_window(mlx, window, wall_texture, x, y);
-			else if (map[line][column] == 'C')
-				mlx_put_image_to_window(mlx, window, collectable_texture, x, y);
-			else if (map[line][column] == 'P')
-				mlx_put_image_to_window(mlx, window, player_texture, x, y);
-			else if (map[line][column] == 'E')
-				mlx_put_image_to_window(mlx, window, exit_texture, x, y);
+			x = column * data->img_size;
+			y = line * data->img_size;			
+			if (data->map[line][column] == '1')
+				mlx_put_image_to_window(data->mlx, data->win, data->img_wall, x, y);
+			else if (data->map[line][column] == 'C')
+				mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
+			else if (data->map[line][column] == 'E')
+				mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x, y);
 			else
-				mlx_put_image_to_window(mlx, window, empty_texture, x, y);
+				mlx_put_image_to_window(data->mlx, data->win, data->img_empty, x, y);
 			column++;
 		}
 		line++;

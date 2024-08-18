@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/18 16:06:33 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:30:41 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,14 @@ void	ft_data_init(t_data *data)
 	data->ff_e = 0;
 	data->ff_c = 0;
 	data->map = NULL;
+	data->mlx = NULL;
+	data->win = NULL;
+	data->img_size = 0;
+	data->img_wall = NULL;
+	data->img_coll = NULL;
+	data->img_player = NULL;
+	data->img_exit = NULL;
+	data->img_empty = NULL;
 }
 
 void	ft_printmap(char **source, int height, int width)

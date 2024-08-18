@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/18 15:54:42 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/18 22:45:37 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,18 @@
 # define ERROR_OPEN 101
 # define ERROR_READ 102
 # define ERROR_MALLOC 103
+# define ERROR_MLX 104
 /* External process failure range 200 | ft_printf() */
 # define ERROR_ARGUMENTS 201
 # define ERROR_TYPE 202
 # define ERROR_MAP 203
+
+/* Path textures */
+# define WALL "./textures/wall.xpm"
+# define COLL "./textures/coll.xpm"
+# define PLAYER "./textures/player.xpm"
+# define EXIT "./textures/exit.xpm"
+# define EMPTY "./textures/empty.xpm"
 
 /* Struct for initial infor about map */
 typedef struct s_data
@@ -43,14 +51,15 @@ typedef struct s_data
 	int		ff_c;
 	int		ff_e;
 	char	**map;
-}	t_data;
-
-/* Struct for variables for mlx stuffs */
-typedef struct s_vars
-{
 	void	*mlx;
-	void	*window;
-}	t_vars;
+	void	*win;
+	int		img_size;
+	void	*img_wall;
+	void	*img_coll;
+	void	*img_player;
+	void	*img_exit;
+	void	*img_empty;
+}	t_data;
 
 /* Free & Error handler */
 void	ft_error_handler(char *error, int signal, char *str, t_data *data);
@@ -58,7 +67,7 @@ void	ft_free_data(t_data *data);
 void	ft_free_map(char **source);
 
 void	ft_loadmap(char *pathname, t_data *data);
-void	ft_render(void *mlx, void *window, char **map, int map_width, int map_height);
+void	ft_render_background(t_data *data);
 
 // so_long utils
 char	**ft_copymap(char **source, t_data *data);
