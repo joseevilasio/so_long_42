@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/18 16:05:57 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:04:17 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static void	ft_checkitems(char *line, t_data *data)
 	{
 		if (line[x] == 'P')
 		{
-			data->pplayer_h = data->height;
+			data->pplayer_h = data->height - 1;
 			data->pplayer_w = x;
 			data->p++;
 		}

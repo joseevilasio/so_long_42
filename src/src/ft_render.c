@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:47:34 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/18 22:48:14 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:22:31 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	ft_render_background(t_data *data)
 		while (data->map[line][column])
 		{
 			x = column * data->img_size;
-			y = line * data->img_size;			
+			y = line * data->img_size;
 			if (data->map[line][column] == '1')
 				mlx_put_image_to_window(data->mlx, data->win, data->img_wall, x, y);
 			else if (data->map[line][column] == 'C')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
+				mlx_put_image_to_window(data->mlx, data->win, data->img_coll, x, y);
 			else if (data->map[line][column] == 'E')
 				mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x, y);
 			else
@@ -53,4 +53,24 @@ void	ft_render_background(t_data *data)
 		}
 		line++;
 	}
+}
+
+void	put_player(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = data->pplayer_w * data->img_size;
+	y = data->pplayer_h * data->img_size;
+	mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
+}
+
+void	put_empty(t_data *data)
+{
+	int	x;
+	int	y;
+
+	x = data->pplayer_w * data->img_size;
+	y = data->pplayer_h * data->img_size;
+	mlx_put_image_to_window(data->mlx, data->win, data->img_empty, x, y);
 }

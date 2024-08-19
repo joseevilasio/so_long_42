@@ -12,7 +12,7 @@ MLXFLAGS = -L ./libs/minilibx-linux -lm -lmlx -Ilmlx -lXext -lX11
 
 LIBFT := libs/libft
 
-SRCS := src/so_long.c src/ft_loadmap.c src/so_long_utils.c\
+SRCS := src/so_long.c src/ft_loadmap.c src/so_long_utils.c src/actions.c\
 		src/free_error_handler.c src/loadmap_utils.c src/ft_render.c\
 
 # OBJS := ft_loadmap.o ft_floodfill.o ft_error_handler.o so_long_utils.o ft_render.o\

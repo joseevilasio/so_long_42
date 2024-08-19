@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/18 22:45:37 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/19 23:20:30 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <fcntl.h>
 # include <X11/keysym.h>
+# include <X11/X.h>
 
 # define SUCCESS 0
 /* Internal process failure range 100 | perror() */
@@ -37,6 +38,7 @@
 # define PLAYER "./textures/player.xpm"
 # define EXIT "./textures/exit.xpm"
 # define EMPTY "./textures/empty.xpm"
+# define PIXEL 80
 
 /* Struct for initial infor about map */
 typedef struct s_data
@@ -59,6 +61,7 @@ typedef struct s_data
 	void	*img_player;
 	void	*img_exit;
 	void	*img_empty;
+	int		movements;
 }	t_data;
 
 /* Free & Error handler */
@@ -66,18 +69,27 @@ void	ft_error_handler(char *error, int signal, char *str, t_data *data);
 void	ft_free_data(t_data *data);
 void	ft_free_map(char **source);
 
+/* Loadmap & Ensure Map */
 void	ft_loadmap(char *pathname, t_data *data);
-void	ft_render_background(t_data *data);
-
-// so_long utils
-char	**ft_copymap(char **source, t_data *data);
-
-// loadmap utils
 int		ft_open(char *pathname, t_data *data);
 void	ft_data_init(t_data *data);
 void	ft_printmap(char **source, int height, int width);
 void	ft_floodfill(char **map, t_data *data, int x, int y);
 char	*ft_strremove(char *str, char *target);
+
+/* Render */
+void	ft_render_background(t_data *data);
+void	put_empty(t_data *data);
+void	put_player(t_data *data);
+
+// so_long utils
+char	**ft_copymap(char **source, t_data *data);
+
+/* Actions */
+int		move_left(t_data *data);
+int		move_right(t_data *data);
+int		move_up(t_data *data);
+int		move_down(t_data *data);
 
 /* 
 https://www.oreilly.com/library/view/xlib-reference-manual/

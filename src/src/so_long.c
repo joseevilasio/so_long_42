@@ -6,34 +6,34 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/18 23:01:20 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/19 21:29:02 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static int	close_window(int keysym, t_data *data)
+static void	close_window(t_data *data)
+{
+	ft_error_handler(NULL, 0, NULL, data);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
+	exit(0);
+}
+
+static int	controller(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
-	{
-		ft_error_handler(NULL, 0, NULL, data);
-		mlx_destroy_window(data->mlx, data->win);
-		mlx_destroy_display(data->mlx);
-		free(data->mlx);
-		exit(0);
-	}
-	return (0);
-}
-
-int	action_up(void)
-{
-	ft_printf("UP");
-	return (0);
-}
-
-static int	controller(t_data *data)
-{
-	mlx_key_hook(data->win, action_up, NULL);
+		close_window(data);
+	if (keysym == XK_A || keysym == XK_a || keysym == XK_Left)
+		data->movements += move_left(data);
+	if (keysym == XK_D || keysym == XK_d || keysym == XK_Right)
+		data->movements += move_right(data);
+	if (keysym == XK_W || keysym == XK_w || keysym == XK_Up)
+		data->movements += move_up(data);
+	if (keysym == XK_S || keysym == XK_s || keysym == XK_Down)
+		data->movements += move_down(data);
+	ft_printf("Move count: %d\n", data->movements);
 	return (0);
 }
 
@@ -47,13 +47,13 @@ int	main(int argc, char **argv)
 		data.mlx = mlx_init();
 		if (!data.mlx)
 			ft_error_handler("Error", ERROR_MLX, NULL, &data);
-		data.win = mlx_new_window(data.mlx, (80*data.width), (80*data.height), "so_long");
+		data.win = mlx_new_window(data.mlx, (PIXEL*data.width), (PIXEL*data.height), "so_long");
 		ft_render_background(&data);
-		mlx_loop_hook(data.mlx, controller, &data);
-		mlx_key_hook(data.win, close_window, &data);
+		mlx_hook(data.win, KeyPress, KeyPressMask, controller, &data);
 		mlx_loop(data.mlx);
 	}
 	else
 		ft_error_handler(strerror(EINVAL), ERROR_ARGUMENTS, NULL, NULL);
 	return (0);		
 }
+	
