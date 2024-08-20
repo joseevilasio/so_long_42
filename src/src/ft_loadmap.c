@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/19 23:04:17 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/20 19:11:15 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,4 +123,5 @@ void	ft_loadmap(char *pathname, t_data *data)
 		ft_error_handler("Map: without exit", ERROR_MAP, NULL, data);
 	}
 	ft_free_map(copy_map);
+	data->new_map = ft_copymap(data->map, data);
 }

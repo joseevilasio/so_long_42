@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/19 23:20:30 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/20 19:45:23 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_data
 	int		ff_c;
 	int		ff_e;
 	char	**map;
+	char	**new_map;
 	void	*mlx;
 	void	*win;
 	int		img_size;
@@ -62,6 +63,7 @@ typedef struct s_data
 	void	*img_exit;
 	void	*img_empty;
 	int		movements;
+	int		bag;
 }	t_data;
 
 /* Free & Error handler */
@@ -79,7 +81,7 @@ char	*ft_strremove(char *str, char *target);
 
 /* Render */
 void	ft_render_background(t_data *data);
-void	put_empty(t_data *data);
+void	put_empty(t_data *data, char set);
 void	put_player(t_data *data);
 
 // so_long utils
@@ -90,6 +92,9 @@ int		move_left(t_data *data);
 int		move_right(t_data *data);
 int		move_up(t_data *data);
 int		move_down(t_data *data);
+
+/* Organizar isso */
+void	close_window(t_data *data);
 
 /* 
 https://www.oreilly.com/library/view/xlib-reference-manual/
