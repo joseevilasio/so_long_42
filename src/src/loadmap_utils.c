@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 19:09:19 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/20 22:36:56 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,48 +38,6 @@ char	*ft_strremove(char *str, char *target)
 	}
 	free(str);
 	return (new_str);
-}
-
-void	ft_data_init(t_data *data)
-{
-	data->width = 0;
-	data->height = 1;
-	data->pplayer_h = 0;
-	data->pplayer_w = 0;
-	data->p = 0;
-	data->e = 0;
-	data->c = 0;
-	data->ff_e = 0;
-	data->ff_c = 0;
-	data->map = NULL;
-	data->new_map = NULL;
-	data->mlx = NULL;
-	data->win = NULL;
-	data->img_size = 0;
-	data->img_wall = NULL;
-	data->img_coll = NULL;
-	data->img_player = NULL;
-	data->img_exit = NULL;
-	data->img_empty = NULL;
-	data->movements = 0;
-	data->bag = 0;
-}
-
-void	ft_printmap(char **source, int height, int width)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	ft_printf("\n PRINT MAP \n");
-	while (y < height)
-	{
-		x = 0;
-		while (x < width)
-			ft_printf("%c", source[y][x++]);
-		ft_printf("\n");
-		y++;
-	}
 }
 
 void	ft_floodfill(char **map, t_data *data, int x, int y)

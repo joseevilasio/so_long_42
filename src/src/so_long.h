@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 20:24:51 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/20 22:33:33 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define PLAYER "./textures/player.xpm"
 # define EXIT "./textures/exit.xpm"
 # define EMPTY "./textures/empty.xpm"
-# define PIXEL 80
+# define PXL 32
 
 /* Struct for initial infor about map */
 typedef struct s_data
@@ -75,8 +75,6 @@ void	ft_free_image(t_data *data);
 /* Loadmap & Ensure Map */
 void	ft_loadmap(char *pathname, t_data *data);
 int		ft_open(char *pathname, t_data *data);
-void	ft_data_init(t_data *data);
-void	ft_printmap(char **source, int height, int width);
 void	ft_floodfill(char **map, t_data *data, int x, int y);
 char	*ft_strremove(char *str, char *target);
 
@@ -88,22 +86,7 @@ void	put_player(t_data *data);
 
 // so_long utils
 char	**ft_copymap(char **source, t_data *data);
-
-/* Actions */
-int		move_left(t_data *data);
-int		move_right(t_data *data);
-int		move_up(t_data *data);
-int		move_down(t_data *data);
-
-/* Organizar isso */
-void	close_window(t_data *data);
-
-/* 
-https://www.oreilly.com/library/view/xlib-reference-manual/
-9780937175262/16_appendix-h.html
-Utilizar keysym para mapear teclas
-
-Refatorar funcoes do map, mudanca de int ** para char **
-*/
+void	ft_data_init(t_data *data);
+void	ft_printmap(char **source);
 
 #endif //SO_LONG_H
