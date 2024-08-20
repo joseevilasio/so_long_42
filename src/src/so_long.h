@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 19:45:23 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/20 20:24:51 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_data
 void	ft_error_handler(char *error, int signal, char *str, t_data *data);
 void	ft_free_data(t_data *data);
 void	ft_free_map(char **source);
+void	ft_free_image(t_data *data);
 
 /* Loadmap & Ensure Map */
 void	ft_loadmap(char *pathname, t_data *data);
@@ -81,6 +82,7 @@ char	*ft_strremove(char *str, char *target);
 
 /* Render */
 void	ft_render_background(t_data *data);
+void	ft_render_layer(t_data *data);
 void	put_empty(t_data *data, char set);
 void	put_player(t_data *data);
 

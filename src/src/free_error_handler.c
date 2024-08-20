@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 19:11:55 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/20 20:25:18 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,12 @@ void	ft_free_data(t_data *data)
 		ft_free_map(data->map);
 	if (data->new_map)
 		ft_free_map(data->new_map);
+	ft_free_image(data);
+	data = NULL;
+}
+
+void	ft_free_image(t_data *data)
+{
 	if (data->img_wall)
 		mlx_destroy_image(data->mlx, data->img_wall);
 	if (data->img_coll)
@@ -70,5 +76,4 @@ void	ft_free_data(t_data *data)
 		mlx_destroy_image(data->mlx, data->img_player);
 	if (data->img_empty)
 		mlx_destroy_image(data->mlx, data->img_empty);
-	data = NULL;
 }

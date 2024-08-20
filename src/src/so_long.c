@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 19:05:42 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/20 20:17:02 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	main(int argc, char **argv)
 			ft_error_handler("Error", ERROR_MLX, NULL, &data);
 		data.win = mlx_new_window(data.mlx, (PIXEL*data.width), (PIXEL*data.height), "so_long");
 		ft_render_background(&data);
+		ft_render_layer(&data);
 		mlx_hook(data.win, KeyPress, KeyPressMask, controller, &data);
 		mlx_loop(data.mlx);
 	}

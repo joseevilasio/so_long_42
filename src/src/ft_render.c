@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:47:34 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 19:53:02 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/20 20:26:43 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,37 @@ void	ft_render_background(t_data *data)
 			y = line * data->img_size;
 			if (data->map[line][column] == '1')
 				mlx_put_image_to_window(data->mlx, data->win, data->img_wall, x, y);
-			else if (data->map[line][column] == 'C')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_coll, x, y);
 			else if (data->map[line][column] == 'E')
 				mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x, y);
-			else if (data->map[line][column] == 'P')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
 			else
 				mlx_put_image_to_window(data->mlx, data->win, data->img_empty, x, y);
+			column++;
+		}
+		line++;
+	}
+}
+
+void	ft_render_layer(t_data *data)
+{
+	int	line;
+	int	column;
+	int x;
+	int y;
+
+	line = 0;
+	while (data->map[line])
+	{
+		column = 0;	
+		while (data->map[line][column])
+		{
+			x = column * data->img_size;
+			y = line * data->img_size;
+			if (data->new_map[line][column] == 'C')
+				mlx_put_image_to_window(data->mlx, data->win, data->img_coll, x, y);
+			else if (data->new_map[line][column] == 'P')
+				mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
+			else if (data->map[line][column] == 'E')
+				mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x, y);
 			column++;
 		}
 		line++;
