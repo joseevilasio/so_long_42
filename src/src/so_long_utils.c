@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 15:58:49 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 22:39:49 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/23 21:15:45 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_data_init(t_data *data)
 	data->img_player = NULL;
 	data->img_exit = NULL;
 	data->img_empty = NULL;
-	data->movements = 0;
+	data->movements = 1;
 	data->bag = 0;
 }
 

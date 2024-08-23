@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:47:34 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 22:38:45 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/23 21:24:38 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_image_init(t_data *data)
 	int	size;
 
 	size = PXL;
-	data->img_size = size;
 	data->img_wall = mlx_xpm_file_to_image(data->mlx, WALL, &size, &size);
 	data->img_coll = mlx_xpm_file_to_image(data->mlx, COLL, &size, &size);
 	data->img_player = mlx_xpm_file_to_image(data->mlx, PLAYER, &size, &size);
@@ -39,8 +38,8 @@ void	ft_render_background(t_data *data)
 		column = 0;
 		while (data->map[line][column])
 		{
-			x = column * data->img_size;
-			y = line * data->img_size;
+			x = column * PXL;
+			y = line * PXL;
 			if (data->map[line][column] == '1')
 				mlx_put_image_to_window(data->mlx, data->win, data->img_wall, x, y);
 			else if (data->map[line][column] == 'E')
@@ -53,7 +52,7 @@ void	ft_render_background(t_data *data)
 	}
 }
 
-void	ft_render_layer(t_data *data)
+void	ft_render_layer(t_data *data, int o_y, int o_x)
 {
 	int	line;
 	int	column;
@@ -66,37 +65,41 @@ void	ft_render_layer(t_data *data)
 		column = 0;
 		while (data->new_map[line][column])
 		{
-			x = column * data->img_size;
-			y = line * data->img_size;
+			x = column * PXL;
+			y = line * PXL;
 			if (data->new_map[line][column] == 'C')
 				mlx_put_image_to_window(data->mlx, data->win, data->img_coll, x, y);
 			else if (data->new_map[line][column] == 'P')
+			{
 				mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
+				if (o_x != 0 && o_y != 0)
+					mlx_put_image_to_window(data->mlx, data->win, data->img_empty, o_x, o_y);
+			}
 			column++;
 		}
 		line++;
 	}
 }
 
-void	put_player(t_data *data)
-{
-	int	x;
-	int	y;
+// void	put_player(t_data *data)
+// {
+// 	int	x;
+// 	int	y;
 
-	x = data->pplayer_w * data->img_size;
-	y = data->pplayer_h * data->img_size;
-	mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
-}
+// 	x = data->pplayer_w * data->img_size;
+// 	y = data->pplayer_h * data->img_size;
+// 	mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
+// }
 
-void	put_empty(t_data *data, char set)
-{
-	int	x;
-	int	y;
+// void	put_empty(t_data *data, char set)
+// {
+// 	int	x;
+// 	int	y;
 
-	x = data->pplayer_w * data->img_size;
-	y = data->pplayer_h * data->img_size;
-	if (set == 'E')
-		mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x, y);
-	else
-		mlx_put_image_to_window(data->mlx, data->win, data->img_empty, x, y);
-}
+// 	x = data->pplayer_w * data->img_size;
+// 	y = data->pplayer_h * data->img_size;
+// 	if (set == 'E')
+// 		mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x, y);
+// 	else
+// 		mlx_put_image_to_window(data->mlx, data->win, data->img_empty, x, y);
+// }

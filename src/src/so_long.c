@@ -6,13 +6,13 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 22:41:01 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/23 21:25:11 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	close_window(t_data *data)
+static int	close_window(t_data *data)
 {
 	ft_error_handler(NULL, 0, NULL, data);
 	mlx_destroy_window(data->mlx, data->win);
@@ -39,9 +39,10 @@ static int	move(t_data *data, int y, int x)
 	data->pplayer_h = y;
 	data->new_map[old_y][old_x] = '0';
 	data->new_map[y][x] = 'P';
-	ft_free_image(data);
-	ft_render_background(data);
-	ft_render_layer(data);
+	//ft_free_image(data);
+	// ft_render_background(data);
+	ft_render_layer(data, old_y * PXL, old_x * PXL);
+	ft_printf("Move count: %d \n", data->movements);
 	return (1);
 }
 
@@ -57,12 +58,11 @@ static int	controller(int keysym, t_data *data)
 		data->movements += move(data, data->pplayer_h - 1, data->pplayer_w);
 	if (keysym == XK_S || keysym == XK_s || keysym == XK_Down)
 		data->movements += move(data, data->pplayer_h + 1, data->pplayer_w);
-	ft_printf("Move count: %d |\n", data->movements);
 	if (data->map[data->pplayer_h][data->pplayer_w] == 'E')
 	{
 		if (data->c == data->bag)
 		{
-			ft_printf("The End");
+			ft_printf(" --- END ---");
 			close_window(data);
 		}
 	}
@@ -81,8 +81,9 @@ int	main(int argc, char **argv)
 			ft_error_handler("Error", ERROR_MLX, NULL, &data);
 		data.win = mlx_new_window(data.mlx, (PXL * data.width), (PXL * data.height), "so_long");
 		ft_render_background(&data);
-		ft_render_layer(&data);
+		ft_render_layer(&data, 0, 0);
 		mlx_hook(data.win, KeyPress, KeyPressMask, controller, &data);
+		mlx_hook(data.win, DestroyNotify, NoEventMask, close_window, &data);
 		mlx_loop(data.mlx);
 	}
 	else
