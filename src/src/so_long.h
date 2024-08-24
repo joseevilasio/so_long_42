@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/24 10:25:14 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/24 19:28:23 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@
 # define ERROR_MAP 203
 
 /* Path textures */
-# define WALL "./textures/wall.xpm"
+# define WALL_0 "./textures/wall_0.xpm"
 # define WALL_1 "./textures/wall_1.xpm"
+# define WALL_2 "./textures/wall_2.xpm"
 # define COLL "./textures/coll.xpm"
 # define PLAYER "./textures/player.xpm"
 # define EXIT "./textures/exit.xpm"
@@ -60,6 +61,7 @@ typedef struct s_data
 	int		size;
 	void	*wall;
 	void	*wall_1;
+	void	*wall_2;
 	void	*coll;
 	void	*player;
 	void	*exit;
