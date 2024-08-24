@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 20:25:18 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/24 11:41:21 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,16 @@ void	ft_free_data(t_data *data)
 
 void	ft_free_image(t_data *data)
 {
-	if (data->img_wall)
-		mlx_destroy_image(data->mlx, data->img_wall);
-	if (data->img_coll)
-		mlx_destroy_image(data->mlx, data->img_coll);
-	if (data->img_exit)
-		mlx_destroy_image(data->mlx, data->img_exit);
-	if (data->img_player)
-		mlx_destroy_image(data->mlx, data->img_player);
-	if (data->img_empty)
-		mlx_destroy_image(data->mlx, data->img_empty);
+	if (data->wall)
+		mlx_destroy_image(data->mlx, data->wall);
+	if (data->coll)
+		mlx_destroy_image(data->mlx, data->coll);
+	if (data->exit)
+		mlx_destroy_image(data->mlx, data->exit);
+	if (data->player)
+		mlx_destroy_image(data->mlx, data->player);
+	if (data->empty)
+		mlx_destroy_image(data->mlx, data->empty);
+	if (data->wall_1)
+		mlx_destroy_image(data->mlx, data->wall_1);
 }

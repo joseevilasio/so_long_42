@@ -6,100 +6,85 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:47:34 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/23 21:24:38 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/24 11:50:25 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	put_image(t_data *data, void *img, int column, int line)
+{
+	int	x;
+	int	y;
+
+	x = column * PXL;
+	y = line * PXL;
+	mlx_put_image_to_window(data->mlx, data->win, img, x, y);
+}
 
 void	ft_image_init(t_data *data)
 {
 	int	size;
 
 	size = PXL;
-	data->img_wall = mlx_xpm_file_to_image(data->mlx, WALL, &size, &size);
-	data->img_coll = mlx_xpm_file_to_image(data->mlx, COLL, &size, &size);
-	data->img_player = mlx_xpm_file_to_image(data->mlx, PLAYER, &size, &size);
-	data->img_exit = mlx_xpm_file_to_image(data->mlx, EXIT, &size, &size);
-	data->img_empty = mlx_xpm_file_to_image(data->mlx, EMPTY, &size, &size);
+	data->wall = mlx_xpm_file_to_image(data->mlx, WALL, &size, &size);
+	data->wall_1 = mlx_xpm_file_to_image(data->mlx, WALL_1, &size, &size);
+	data->coll = mlx_xpm_file_to_image(data->mlx, COLL, &size, &size);
+	data->player = mlx_xpm_file_to_image(data->mlx, PLAYER, &size, &size);
+	data->exit = mlx_xpm_file_to_image(data->mlx, EXIT, &size, &size);
+	data->empty = mlx_xpm_file_to_image(data->mlx, EMPTY, &size, &size);
 }
 
 void	ft_render_background(t_data *data)
 {
-	int	line;
-	int	column;
-	int	x;
-	int	y;
+	int	li;
+	int	col;
 
-	line = 0;
+	li = 0;
 	ft_image_init(data);
-	while (data->map[line])
+	while (data->map[li])
 	{
-		column = 0;
-		while (data->map[line][column])
+		col = 0;
+		while (data->map[li][col])
 		{
-			x = column * PXL;
-			y = line * PXL;
-			if (data->map[line][column] == '1')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_wall, x, y);
-			else if (data->map[line][column] == 'E')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x, y);
+			if (data->map[li][col] == '1')
+			{
+				if (li && col && col != data->width -1 && li != data->height -1)
+					put_image(data, data->wall_1, col, li);
+				else
+					put_image(data, data->wall, col, li);
+			}
+			else if (data->map[li][col] == 'E')
+				put_image(data, data->exit, col, li);
 			else
-				mlx_put_image_to_window(data->mlx, data->win, data->img_empty, x, y);
-			column++;
+				put_image(data, data->empty, col, li);
+			col++;
 		}
-		line++;
+		li++;
 	}
 }
 
 void	ft_render_layer(t_data *data, int o_y, int o_x)
 {
-	int	line;
-	int	column;
-	int	x;
-	int	y;
+	int	li;
+	int	col;
 
-	line = 0;
-	while (data->new_map[line])
+	li = 0;
+	while (data->new_map[li])
 	{
-		column = 0;
-		while (data->new_map[line][column])
+		col = 0;
+		while (data->new_map[li][col])
 		{
-			x = column * PXL;
-			y = line * PXL;
-			if (data->new_map[line][column] == 'C')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_coll, x, y);
-			else if (data->new_map[line][column] == 'P')
+			if (data->new_map[li][col] == 'C')
+				put_image(data, data->coll, col, li);
+			else if (data->new_map[li][col] == 'P')
 			{
-				mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
+				put_image(data, data->player, col, li);
 				if (o_x != 0 && o_y != 0)
-					mlx_put_image_to_window(data->mlx, data->win, data->img_empty, o_x, o_y);
+					put_image(data, data->empty, o_x, o_y);
 			}
-			column++;
+			col++;
 		}
-		line++;
+		li++;
 	}
 }
-
-// void	put_player(t_data *data)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = data->pplayer_w * data->img_size;
-// 	y = data->pplayer_h * data->img_size;
-// 	mlx_put_image_to_window(data->mlx, data->win, data->img_player, x, y);
-// }
-
-// void	put_empty(t_data *data, char set)
-// {
-// 	int	x;
-// 	int	y;
-
-// 	x = data->pplayer_w * data->img_size;
-// 	y = data->pplayer_h * data->img_size;
-// 	if (set == 'E')
-// 		mlx_put_image_to_window(data->mlx, data->win, data->img_exit, x, y);
-// 	else
-// 		mlx_put_image_to_window(data->mlx, data->win, data->img_empty, x, y);
-// }

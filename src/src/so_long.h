@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/23 21:23:07 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:25:14 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@
 
 /* Path textures */
 # define WALL "./textures/wall.xpm"
+# define WALL_1 "./textures/wall_1.xpm"
 # define COLL "./textures/coll.xpm"
 # define PLAYER "./textures/player.xpm"
 # define EXIT "./textures/exit.xpm"
@@ -56,12 +57,13 @@ typedef struct s_data
 	char	**new_map;
 	void	*mlx;
 	void	*win;
-	int		img_size;
-	void	*img_wall;
-	void	*img_coll;
-	void	*img_player;
-	void	*img_exit;
-	void	*img_empty;
+	int		size;
+	void	*wall;
+	void	*wall_1;
+	void	*coll;
+	void	*player;
+	void	*exit;
+	void	*empty;
 	int		movements;
 	int		bag;
 }	t_data;

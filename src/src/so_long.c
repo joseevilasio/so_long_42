@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/23 21:25:11 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:14:47 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static int	move(t_data *data, int y, int x)
 	data->pplayer_h = y;
 	data->new_map[old_y][old_x] = '0';
 	data->new_map[y][x] = 'P';
-	//ft_free_image(data);
-	// ft_render_background(data);
 	ft_render_layer(data, old_y * PXL, old_x * PXL);
 	ft_printf("Move count: %d \n", data->movements);
 	return (1);
@@ -72,6 +70,8 @@ static int	controller(int keysym, t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	int		width;
+	int		height;
 
 	if (argc == 2)
 	{
@@ -79,7 +79,9 @@ int	main(int argc, char **argv)
 		data.mlx = mlx_init();
 		if (!data.mlx)
 			ft_error_handler("Error", ERROR_MLX, NULL, &data);
-		data.win = mlx_new_window(data.mlx, (PXL * data.width), (PXL * data.height), "so_long");
+		width = PXL * data.width;
+		height = PXL * data.height;
+		data.win = mlx_new_window(data.mlx, width, height, "so_long");
 		ft_render_background(&data);
 		ft_render_layer(&data, 0, 0);
 		mlx_hook(data.win, KeyPress, KeyPressMask, controller, &data);
