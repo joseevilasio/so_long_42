@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:47:34 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/24 19:38:46 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/24 21:36:27 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	ft_render_background(t_data *data)
 		{
 			if (data->map[li][col] == '1')
 			{
-				if (!li)
-					put_image(data, data->wall_1, col, li);
 				if (li == data->height -1)
 					put_image(data, data->wall, col, li);
+				else if (col == 0 || col == data->width -1 || li == 0)
+					put_image(data, data->wall_1, col, li);
 				else
 					put_image(data, data->wall_2, col, li);
 			}

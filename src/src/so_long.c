@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/24 10:14:47 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/24 21:37:19 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	move(t_data *data, int y, int x)
 	data->pplayer_h = y;
 	data->new_map[old_y][old_x] = '0';
 	data->new_map[y][x] = 'P';
-	ft_render_layer(data, old_y * PXL, old_x * PXL);
+	ft_render_layer(data, old_y, old_x);
 	ft_printf("Move count: %d \n", data->movements);
 	return (1);
 }

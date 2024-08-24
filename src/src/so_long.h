@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/24 19:28:23 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/24 22:07:59 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ char	*ft_strremove(char *str, char *target);
 /* Render */
 void	ft_render_background(t_data *data);
 void	ft_render_layer(t_data *data, int old_y, int old_x);
-// void	put_empty(t_data *data, char set);
-// void	put_player(t_data *data);
 
 // so_long utils
 char	**ft_copymap(char **source, t_data *data);
