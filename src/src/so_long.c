@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/24 21:37:19 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 14:10:42 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	close_window(t_data *data)
 {
+	ft_printmap(data->new_map); //retirar
 	ft_error_handler(NULL, 0, NULL, data);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
@@ -82,6 +83,7 @@ int	main(int argc, char **argv)
 		width = PXL * data.width;
 		height = PXL * data.height;
 		data.win = mlx_new_window(data.mlx, width, height, "so_long");
+		ft_image_init(&data);
 		ft_render_background(&data);
 		ft_render_layer(&data, 0, 0);
 		mlx_hook(data.win, KeyPress, KeyPressMask, controller, &data);

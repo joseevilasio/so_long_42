@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/24 22:07:59 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 14:10:23 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define WALL_2 "./textures/wall_2.xpm"
 # define COLL "./textures/coll.xpm"
 # define PLAYER "./textures/player.xpm"
+# define PLAYER_1 "./textures/player_exit.xpm"
 # define EXIT "./textures/exit.xpm"
 # define EMPTY "./textures/empty.xpm"
 # define PXL 32
@@ -64,6 +65,7 @@ typedef struct s_data
 	void	*wall_2;
 	void	*coll;
 	void	*player;
+	void	*player_1;
 	void	*exit;
 	void	*empty;
 	int		movements;
@@ -80,11 +82,12 @@ void	ft_free_image(t_data *data);
 void	ft_loadmap(char *pathname, t_data *data);
 int		ft_open(char *pathname, t_data *data);
 void	ft_floodfill(char **map, t_data *data, int x, int y);
-char	*ft_strremove(char *str, char *target);
+char	*ft_strremove(char *str, t_data *data);
 
 /* Render */
 void	ft_render_background(t_data *data);
 void	ft_render_layer(t_data *data, int old_y, int old_x);
+void	ft_image_init(t_data *data);
 
 // so_long utils
 char	**ft_copymap(char **source, t_data *data);

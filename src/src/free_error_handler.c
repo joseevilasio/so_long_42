@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/24 19:32:39 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:59:25 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,6 @@ void	ft_free_image(t_data *data)
 		mlx_destroy_image(data->mlx, data->wall_1);
 	if (data->wall_2)
 		mlx_destroy_image(data->mlx, data->wall_2);
+	if (data->player_1)
+		mlx_destroy_image(data->mlx, data->player_1);
 }

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/20 22:36:56 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:35:01 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,35 @@ int	ft_open(char *pathname, t_data *data)
 	return (fd);
 }
 
-char	*ft_strremove(char *str, char *target)
+char	*ft_strremove(char *str, t_data *data)
 {
 	char	*new_str;
 
-	new_str = ft_strtrim(str, target);
-	if (!new_str)
+	new_str = NULL;
+	if (str)
 	{
-		free(new_str);
-		return (str);
+		if (!ft_strchr(str, '\n'))
+			return (str);
+		new_str = ft_strtrim(str, "\n");
+		if (!new_str)
+			ft_error_handler("Error", ERROR_MALLOC, str, data);
+		free(str);
+		return (new_str);
 	}
-	free(str);
-	return (new_str);
+	return (NULL);
 }
 
 void	ft_floodfill(char **map, t_data *data, int x, int y)
 {
 	if (x < 0 || x >= data->width || y < 0 || y >= data->height)
 		return ;
-	if (map[y][x] == '1')
+	if (map[y][x] == '1' || map[y][x] == 'V')
 		return ;
 	if (map[y][x] == 'E')
 		data->ff_e++;
 	if (map[y][x] == 'C')
 		data->ff_c++;
-	map[y][x] = '1';
+	map[y][x] = 'V';
 	ft_floodfill(map, data, x + 1, y);
 	ft_floodfill(map, data, x - 1, y);
 	ft_floodfill(map, data, x, y + 1);
