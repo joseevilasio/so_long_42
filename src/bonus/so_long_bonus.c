@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 14:50:25 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:14:25 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,19 +70,13 @@ static int	controller(int keysym, t_data *data)
 int	main(int argc, char **argv)
 {
 	t_data	data;
-	int		width;
-	int		height;
 
+	data = NULL;
 	if (argc == 2)
 	{
+		all_init(&data);
 		ft_loadmap(argv[1], &data);
-		data.mlx = mlx_init();
-		if (!data.mlx)
-			ft_error_handler("Error", ERROR_MLX, NULL, &data);
-		width = PXL * data.width;
-		height = PXL * data.height;
-		data.win = mlx_new_window(data.mlx, width, height, "so_long");
-		ft_image_init(&data);
+		
 		ft_render_background(&data);
 		ft_render_layer(&data, 0, 0);
 		mlx_hook(data.win, KeyPress, KeyPressMask, controller, &data);

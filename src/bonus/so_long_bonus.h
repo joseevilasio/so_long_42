@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 14:49:58 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:15:13 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@
 # define ERROR_MAP 203
 
 /* Path textures */
-# define WALL_0 "./textures/wall_0.xpm"
-# define WALL_1 "./textures/wall_1.xpm"
-# define WALL_2 "./textures/wall_2.xpm"
+# define WALL_00 "./textures/wall/wall_00.xpm"
+# define WALL_01 "./textures/wall/wall_01.xpm"
+# define WALL_1 "./textures/wall/wall_1.xpm"
+# define WALL_2 "./textures/wall/wall_2.xpm"
 # define COLL "./textures/coll.xpm"
 # define PLAYER "./textures/player.xpm"
 # define PLAYER_1 "./textures/player_exit.xpm"
@@ -60,7 +61,16 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	int		size;
-	void	*wall;
+	int		movements;
+	int		bag;
+	t_image	img;
+}	t_data;
+
+/* Struct IMAGE */
+typedef struct s_image
+{
+	void	*wall_00;
+	void	*wall_01;
 	void	*wall_1;
 	void	*wall_2;
 	void	*coll;
@@ -68,9 +78,7 @@ typedef struct s_data
 	void	*player_1;
 	void	*exit;
 	void	*empty;
-	int		movements;
-	int		bag;
-}	t_data;
+}	t_image;
 
 /* Free & Error handler */
 void	ft_error_handler(char *error, int signal, char *str, t_data *data);
@@ -83,15 +91,18 @@ void	ft_loadmap(char *pathname, t_data *data);
 int		ft_open(char *pathname, t_data *data);
 void	ft_floodfill(char **map, t_data *data, int x, int y);
 char	*ft_strremove(char *str, t_data *data);
+char	**ft_copymap(char **source, t_data *data);
+void	ft_data_init(t_data *data);
+void	ft_printmap(char **source);
 
 /* Render */
 void	ft_render_background(t_data *data);
 void	ft_render_layer(t_data *data, int old_y, int old_x);
-void	ft_image_init(t_data *data);
 
-// so_long utils
-char	**ft_copymap(char **source, t_data *data);
-void	ft_data_init(t_data *data);
-void	ft_printmap(char **source);
+/* Initiators */
+void	all_init(t_data *data);
+void	data_init(t_data *data);
+void	image_init(t_data *data);
+void	image_init_null(t_data *data);
 
 #endif //SO_LONG_BONUS_H

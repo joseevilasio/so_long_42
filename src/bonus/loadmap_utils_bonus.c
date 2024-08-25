@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 14:50:32 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:55:49 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,36 @@ void	ft_floodfill(char **map, t_data *data, int x, int y)
 	ft_floodfill(map, data, x - 1, y);
 	ft_floodfill(map, data, x, y + 1);
 	ft_floodfill(map, data, x, y - 1);
+}
+
+char	**ft_copymap(char **source, t_data *data)
+{
+	int		i;
+	char	**map;
+
+	i = 0;
+	map = NULL;
+	map = (char **) malloc((data->height + 1) * sizeof(char *));
+	if (!map)
+		ft_error_handler("Error", ERROR_MALLOC, NULL, data);
+	while (source[i])
+	{
+		map[i] = ft_strdup(source[i]);
+		i++;
+	}
+	map[i] = NULL;
+	return (map);
+}
+
+void	ft_printmap(char **source)
+{
+	int	i;
+
+	i = 0;
+	ft_printf("\n PRINT MAP \n");
+	while (source[i])
+	{
+		ft_printf("%s\n", source[i]);
+		i++;
+	}
 }

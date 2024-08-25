@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:47:34 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 14:50:36 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:45:03 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,6 @@ void	put_image(t_data *data, void *img, int column, int line)
 	x = column * PXL;
 	y = line * PXL;
 	mlx_put_image_to_window(data->mlx, data->win, img, x, y);
-}
-
-void	ft_image_init(t_data *data)
-{
-	int	size;
-
-	size = PXL;
-	data->wall = mlx_xpm_file_to_image(data->mlx, WALL_0, &size, &size);
-	data->wall_1 = mlx_xpm_file_to_image(data->mlx, WALL_1, &size, &size);
-	data->wall_2 = mlx_xpm_file_to_image(data->mlx, WALL_2, &size, &size);
-	data->coll = mlx_xpm_file_to_image(data->mlx, COLL, &size, &size);
-	data->player = mlx_xpm_file_to_image(data->mlx, PLAYER, &size, &size);
-	data->player_1 = mlx_xpm_file_to_image(data->mlx, PLAYER_1, &size, &size);
-	data->exit = mlx_xpm_file_to_image(data->mlx, EXIT, &size, &size);
-	data->empty = mlx_xpm_file_to_image(data->mlx, EMPTY, &size, &size);
 }
 
 void	ft_render_background(t_data *data)

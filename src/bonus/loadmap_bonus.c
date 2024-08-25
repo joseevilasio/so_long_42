@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_loadmap_bonus.c                                 :+:      :+:    :+:   */
+/*   loadmap_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 14:54:54 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:07:14 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	ft_loadmap(char *pathname, t_data *data)
 	char	**copy_map;
 
 	copy_map = NULL;
-	ft_data_init(data);
 	ft_ensure(pathname, data);
 	ft_create_matrix(pathname, data);
 	copy_map = ft_copymap(data->map, data);
