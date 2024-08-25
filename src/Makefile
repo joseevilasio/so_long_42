@@ -15,24 +15,25 @@ LIBFT := libs/libft
 SRCS := src/so_long.c src/ft_loadmap.c src/so_long_utils.c\
 		src/free_error_handler.c src/loadmap_utils.c src/ft_render.c\
 
-# SRCS_BONUS := bonus/pipex_utils_bonus.c bonus/ft_parser_bonus.c  \
-# 			bonus/ft_heredoc_bonus.c\
+SRCS_BONUS := bonus/so_long_bonus.c bonus/ft_loadmap_bonus.c\
+		bonus/so_long_utils_bonus.c bonus/free_error_handler_bonus.c\
+		bonus/loadmap_utils_bonus.c bonus/ft_render_bonus.c\
 
 all:	$(NAME)
 
-$(OBJS): $(SRCS)
-	$(CC) $(CFLAGS) -c $*.c -o $@
-
-# $(OBJS_BONUS): $(SRCS_BONUS)
+# $(OBJS): $(SRCS)
 # 	$(CC) $(CFLAGS) -c $*.c -o $@
+
+# # $(OBJS_BONUS): $(SRCS_BONUS)
+# # 	$(CC) $(CFLAGS) -c $*.c -o $@
 
 $(NAME):
 	make all -C $(LIBFT)
 	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(MLXFLAGS) $(LIBFT)/libft.a
 
-# bonus: $(OBJS_BONUS)
-# 	make all -C $(LIBFT)
-# 	$(CC) $(CFLAGS) bonus/$(NAME)_bonus.c -o $(NAME) bonus/$(NAME).a $(LIBFT)/$(LIBFT).a
+bonus:
+	make all -C $(LIBFT)
+	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME) $(MLXFLAGS) $(LIBFT)/libft.a
 
 clean:
 	make clean -C $(LIBFT)

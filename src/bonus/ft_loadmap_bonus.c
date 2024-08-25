@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_loadmap.c                                       :+:      :+:    :+:   */
+/*   ft_loadmap_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 14:54:40 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/25 14:54:54 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	ft_create_matrix(char *pathname, t_data *data)
 {
