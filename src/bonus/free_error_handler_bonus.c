@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 14:50:45 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:52:57 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,27 @@ void	ft_free_data(t_data *data)
 	if (data->new_map)
 		ft_free_map(data->new_map);
 	ft_free_image(data);
-	data = NULL;
+	free(data);
 }
 
 void	ft_free_image(t_data *data)
 {
-	if (data->wall)
-		mlx_destroy_image(data->mlx, data->wall);
-	if (data->coll)
-		mlx_destroy_image(data->mlx, data->coll);
-	if (data->exit)
-		mlx_destroy_image(data->mlx, data->exit);
-	if (data->player)
-		mlx_destroy_image(data->mlx, data->player);
-	if (data->empty)
-		mlx_destroy_image(data->mlx, data->empty);
-	if (data->wall_1)
-		mlx_destroy_image(data->mlx, data->wall_1);
-	if (data->wall_2)
-		mlx_destroy_image(data->mlx, data->wall_2);
-	if (data->player_1)
-		mlx_destroy_image(data->mlx, data->player_1);
+	if (data->img->wall_00)
+		mlx_destroy_image(data->mlx, data->img->wall_00);
+	if (data->img->coll)
+		mlx_destroy_image(data->mlx, data->img->coll);
+	if (data->img->exit)
+		mlx_destroy_image(data->mlx, data->img->exit);
+	if (data->img->player)
+		mlx_destroy_image(data->mlx, data->img->player);
+	if (data->img->empty)
+		mlx_destroy_image(data->mlx, data->img->empty);
+	if (data->img->wall_1)
+		mlx_destroy_image(data->mlx, data->img->wall_1);
+	if (data->img->wall_2)
+		mlx_destroy_image(data->mlx, data->img->wall_2);
+	if (data->img->player_1)
+		mlx_destroy_image(data->mlx, data->img->player_1);
+	if (data->img)
+		free(data->img);
 }

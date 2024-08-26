@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 16:14:25 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/26 20:24:06 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,19 @@ static int	controller(int keysym, t_data *data)
 
 int	main(int argc, char **argv)
 {
-	t_data	data;
+	t_data	*data;
 
-	data = NULL;
 	if (argc == 2)
 	{
-		all_init(&data);
-		ft_loadmap(argv[1], &data);
-		
-		ft_render_background(&data);
-		ft_render_layer(&data, 0, 0);
-		mlx_hook(data.win, KeyPress, KeyPressMask, controller, &data);
-		mlx_hook(data.win, DestroyNotify, NoEventMask, close_window, &data);
-		mlx_loop(data.mlx);
+		data = malloc(sizeof(t_data));
+		if (!data)
+		ft_error_handler("Error", ERROR_MALLOC, NULL, NULL);
+		all_init(data, argv[1]);
+		ft_render_background(data);
+		ft_render_layer(data, 0, 0);
+		mlx_hook(data->win, KeyPress, KeyPressMask, controller, data);
+		mlx_hook(data->win, DestroyNotify, NoEventMask, close_window, data);
+		mlx_loop(data->mlx);
 	}
 	else
 		ft_error_handler(strerror(EINVAL), ERROR_ARGUMENTS, NULL, NULL);

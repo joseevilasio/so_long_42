@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:44:48 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 16:13:56 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/26 20:23:10 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	image_init_null(t_data *data)
 {
-	data->img.wall_00 = NULL;
-	data->img.wall_01 = NULL
-	data->img.wall_1 = NULL;
-	data->img.wall_2 = NULL;
-	data->img.coll = NULL;
-	data->img.player = NULL;
-	data->img.player_1 = NULL;
-	data->img.exit = NULL;
-	data->img.empty = NULL;
+	data->img->wall_00 = NULL;
+	data->img->wall_01 = NULL;
+	data->img->wall_1 = NULL;
+	data->img->wall_2 = NULL;
+	data->img->coll = NULL;
+	data->img->player = NULL;
+	data->img->player_1 = NULL;
+	data->img->exit = NULL;
+	data->img->empty = NULL;
 }
 
 void	image_init(t_data *data)
@@ -30,15 +30,15 @@ void	image_init(t_data *data)
 	int	size;
 
 	size = PXL;
-	data->img.wall_00 = mlx_xpm_file_to_image(data->mlx, WALL_00, &size, &size);
-	data->img.wall_01 = mlx_xpm_file_to_image(data->mlx, WALL_01, &size, &size);
-	data->img.wall_1 = mlx_xpm_file_to_image(data->mlx, WALL_1, &size, &size);
-	data->img.wall_2 = mlx_xpm_file_to_image(data->mlx, WALL_2, &size, &size);
-	data->img.coll = mlx_xpm_file_to_image(data->mlx, COLL, &size, &size);
-	data->img.player = mlx_xpm_file_to_image(data->mlx, PLAYER, &size, &size);
-	data->img.player_1 = mlx_xpm_file_to_image(data->mlx, PLAYER_1, &size, &size);
-	data->img.exit = mlx_xpm_file_to_image(data->mlx, EXIT, &size, &size);
-	data->img.empty = mlx_xpm_file_to_image(data->mlx, EMPTY, &size, &size);
+	data->img->wall_00 = mlx_xpm_file_to_image(data->mlx, WALL_00, &size, &size);
+	data->img->wall_01 = mlx_xpm_file_to_image(data->mlx, WALL_01, &size, &size);
+	data->img->wall_1 = mlx_xpm_file_to_image(data->mlx, WALL_1, &size, &size);
+	data->img->wall_2 = mlx_xpm_file_to_image(data->mlx, WALL_2, &size, &size);
+	data->img->coll = mlx_xpm_file_to_image(data->mlx, COLL, &size, &size);
+	data->img->player = mlx_xpm_file_to_image(data->mlx, PLAYER, &size, &size);
+	data->img->player_1 = mlx_xpm_file_to_image(data->mlx, PLAYER_1, &size, &size);
+	data->img->exit = mlx_xpm_file_to_image(data->mlx, EXIT, &size, &size);
+	data->img->empty = mlx_xpm_file_to_image(data->mlx, EMPTY, &size, &size);
 }
 
 void	data_init(t_data *data)
@@ -59,22 +59,24 @@ void	data_init(t_data *data)
 	data->size = 0;
 	data->movements = 1;
 	data->bag = 0;
-	data->img = NULL;
+	data->img = malloc(sizeof(t_image));
 }
 
-void	all_init(t_data *data)
+void	all_init(t_data *data, char *path)
 {
 	int		width;
 	int		height;
 
 	data_init(data);
-	image_init_null(data);
+	ft_loadmap(path, data);
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		ft_error_handler("Error", ERROR_MLX, NULL, &data);
+		ft_error_handler("Error", ERROR_MLX, NULL, data);
 	width = PXL * data->width;
 	height = PXL * data->height;
-	data->win = mlx_new_window(data.mlx, width, height, "Capybara World");
+	data->win = mlx_new_window(data->mlx, width, height, "Capybara World");
 	if (!data->win)
-		ft_error_handler("Error", ERROR_MLX, NULL, &data);	
+		ft_error_handler("Error", ERROR_MLX, NULL, data);
+	image_init_null(data);
+	image_init(data);
 }

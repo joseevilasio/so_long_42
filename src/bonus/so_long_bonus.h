@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 16:15:13 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/26 19:51:42 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,20 @@
 # define EMPTY "./textures/empty.xpm"
 # define PXL 32
 
+/* Struct IMAGE */
+typedef struct s_image
+{
+	void	*wall_00;
+	void	*wall_01;
+	void	*wall_1;
+	void	*wall_2;
+	void	*coll;
+	void	*player;
+	void	*player_1;
+	void	*exit;
+	void	*empty;
+}	t_image;
+
 /* Struct for initial infor about map */
 typedef struct s_data
 {
@@ -63,22 +77,8 @@ typedef struct s_data
 	int		size;
 	int		movements;
 	int		bag;
-	t_image	img;
+	t_image	*img;
 }	t_data;
-
-/* Struct IMAGE */
-typedef struct s_image
-{
-	void	*wall_00;
-	void	*wall_01;
-	void	*wall_1;
-	void	*wall_2;
-	void	*coll;
-	void	*player;
-	void	*player_1;
-	void	*exit;
-	void	*empty;
-}	t_image;
 
 /* Free & Error handler */
 void	ft_error_handler(char *error, int signal, char *str, t_data *data);
@@ -100,7 +100,7 @@ void	ft_render_background(t_data *data);
 void	ft_render_layer(t_data *data, int old_y, int old_x);
 
 /* Initiators */
-void	all_init(t_data *data);
+void	all_init(t_data *data, char *path);
 void	data_init(t_data *data);
 void	image_init(t_data *data);
 void	image_init_null(t_data *data);
