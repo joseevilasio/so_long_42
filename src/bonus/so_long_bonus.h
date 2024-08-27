@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/26 19:51:42 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:46:32 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <time.h>
 
 # define SUCCESS 0
 /* Internal process failure range 100 | perror() */
@@ -98,6 +99,8 @@ void	ft_printmap(char **source);
 /* Render */
 void	ft_render_background(t_data *data);
 void	ft_render_layer(t_data *data, int old_y, int old_x);
+void	water(t_data *data);
+void	put_image(t_data *data, void *img, int column, int line);
 
 /* Initiators */
 void	all_init(t_data *data, char *path);

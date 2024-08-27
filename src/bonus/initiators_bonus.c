@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:44:48 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/26 20:23:10 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:40:23 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	image_init_null(t_data *data)
 {
+	data->img = malloc(sizeof(t_image));
 	data->img->wall_00 = NULL;
 	data->img->wall_01 = NULL;
 	data->img->wall_1 = NULL;
@@ -59,7 +60,7 @@ void	data_init(t_data *data)
 	data->size = 0;
 	data->movements = 1;
 	data->bag = 0;
-	data->img = malloc(sizeof(t_image));
+	data->img = NULL;
 }
 
 void	all_init(t_data *data, char *path)

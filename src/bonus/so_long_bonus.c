@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/26 20:24:06 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/27 22:53:49 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,29 @@ static int	close_window(t_data *data)
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
+	free(data);
 	exit(0);
+}
+int	animations(t_data *data)
+{
+	time_t	r_curr_time;
+	// time_t	c_curr_time;
+	time_t	r_move_time;
+
+	r_curr_time = time(NULL);
+	r_move_time = 1;
+	if (r_curr_time - r_move_time >= 2)
+	{
+		water(data);
+		r_move_time = r_curr_time;
+	}
+	// c_curr_time = time(NULL);
+	// if (c_curr_time - game->c_move_time >= KNIGHT_INTERVAL)
+	// {
+	// 	move_knights(game);
+	// 	game->c_move_time = c_curr_time;
+	// }
+	return (0);
 }
 
 static int	move(t_data *data, int y, int x)
@@ -79,6 +101,8 @@ int	main(int argc, char **argv)
 		all_init(data, argv[1]);
 		ft_render_background(data);
 		ft_render_layer(data, 0, 0);
+		//mlx_clear_window(data->mlx, data->win);
+		mlx_loop_hook(data->mlx, animations, data);
 		mlx_hook(data->win, KeyPress, KeyPressMask, controller, data);
 		mlx_hook(data->win, DestroyNotify, NoEventMask, close_window, data);
 		mlx_loop(data->mlx);
