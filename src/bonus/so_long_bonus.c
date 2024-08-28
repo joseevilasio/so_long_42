@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/27 22:53:49 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:08:38 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int	animations(t_data *data)
 {
 	time_t	r_curr_time;
 	// time_t	c_curr_time;
-	time_t	r_move_time;
+	// time_t	r_move_time;
 
 	r_curr_time = time(NULL);
-	r_move_time = 1;
-	if (r_curr_time - r_move_time >= 2)
+	// r_move_time = 1;
+	if (r_curr_time - data->r_move_time >= 1)
 	{
 		water(data);
-		r_move_time = r_curr_time;
+		data->r_move_time = r_curr_time;
 	}
 	// c_curr_time = time(NULL);
 	// if (c_curr_time - game->c_move_time >= KNIGHT_INTERVAL)
@@ -93,6 +93,7 @@ int	main(int argc, char **argv)
 {
 	t_data	*data;
 
+	srand(time(NULL));
 	if (argc == 2)
 	{
 		data = malloc(sizeof(t_data));

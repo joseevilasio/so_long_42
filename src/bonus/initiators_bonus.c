@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:44:48 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/26 22:40:23 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:01:16 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	data_init(t_data *data)
 	data->movements = 1;
 	data->bag = 0;
 	data->img = NULL;
+	data->r_move_time = time(NULL);
 }
 
 void	all_init(t_data *data, char *path)

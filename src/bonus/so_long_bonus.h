@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/27 22:46:32 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:00:34 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct s_data
 	int		movements;
 	int		bag;
 	t_image	*img;
+	time_t r_move_time;
 }	t_data;
 
 /* Free & Error handler */

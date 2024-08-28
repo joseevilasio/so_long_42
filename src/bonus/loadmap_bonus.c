@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 16:07:14 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/28 19:05:45 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static void	ft_create_matrix(char *pathname, t_data *data)
 	y = 0;
 	data->map = (char **) malloc((data->height + 1) * sizeof(char *));
 	if (!data->map)
-		ft_error_handler("Error", ERROR_MALLOC, NULL, data);
+		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
 	fd = ft_open(pathname, data);
 	line = ft_strremove(get_next_line(fd), data);
 	while (line && y < data->height)
 	{
 		data->map[y] = ft_strdup(line);
 		if (!data->map[y])
-			ft_error_handler("Error", ERROR_MALLOC, line, data);
+			ft_error_handler("Error\n", ERROR_MALLOC, line, data);
 		free(line);
 		line = ft_strremove(get_next_line(fd), data);
 		y++;
