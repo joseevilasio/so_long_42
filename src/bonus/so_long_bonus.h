@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/28 19:00:34 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/29 22:49:20 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@
 # define EMPTY "./textures/empty.xpm"
 # define PXL 32
 
+/* Path Enemy */
+# define EBACK0 "./textures/enemy/eback0.xpm"
+# define EBACK1 "./textures/enemy/eback1.xpm"
+# define EBACK2 "./textures/enemy/eback2.xpm"
+# define EFRONT0 "./textures/enemy/efront0.xpm"
+# define EFRONT1 "./textures/enemy/efront1.xpm"
+# define EFRONT2 "./textures/enemy/efront2.xpm"
+# define ELEFT0 "./textures/enemy/eleft0.xpm"
+# define ELEFT1 "./textures/enemy/eleft1.xpm"
+# define ELEFT2 "./textures/enemy/eleft2.xpm"
+# define ERIGHT0 "./textures/enemy/eright0.xpm"
+# define ERIGHT1 "./textures/enemy/eright1.xpm"
+# define ERIGHT2 "./textures/enemy/eright2.xpm"
+
 /* Struct IMAGE */
 typedef struct s_image
 {
@@ -57,6 +71,18 @@ typedef struct s_image
 	void	*player_1;
 	void	*exit;
 	void	*empty;
+	void	*eback0;
+	void	*eback1;
+	void	*eback2;
+	void	*efront0;
+	void	*efront1;
+	void 	*efront2;
+	void	*eleft0;
+	void	*eleft1;
+	void	*eleft2;
+	void	*eright0;
+	void	*eright1;
+	void	*eright2;
 }	t_image;
 
 /* Struct for initial infor about map */
@@ -102,6 +128,9 @@ void	ft_render_background(t_data *data);
 void	ft_render_layer(t_data *data, int old_y, int old_x);
 void	water(t_data *data);
 void	put_image(t_data *data, void *img, int column, int line);
+
+/* Animations */
+
 
 /* Initiators */
 void	all_init(t_data *data, char *path);
