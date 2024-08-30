@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:44:48 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/29 22:52:37 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/30 19:27:16 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ void	image_init(t_data *data)
 	data->img->player_1 = mlx_xpm_file_to_image(data->mlx, PLAYER_1, &size, &size);
 	data->img->exit = mlx_xpm_file_to_image(data->mlx, EXIT, &size, &size);
 	data->img->empty = mlx_xpm_file_to_image(data->mlx, EMPTY, &size, &size);
-	data->img->eback0 = mlx_xpm_file_to_image(data->mlx, EBACK1,&size, &size);
-	data->img->eback1 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->eback2 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->efront0 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->efront1 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->efront2 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->eleft0 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->eleft1 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->eleft2 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->eright0 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->eright1 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
-	data->img->eright2 = mlx_xpm_file_to_image(data->mlx, e,&size, &size);
+	data->img->eback0 = mlx_xpm_file_to_image(data->mlx, EBACK0,&size, &size);
+	data->img->eback1 = mlx_xpm_file_to_image(data->mlx, EBACK1,&size, &size);
+	data->img->eback2 = mlx_xpm_file_to_image(data->mlx, EBACK2,&size, &size);
+	data->img->efront0 = mlx_xpm_file_to_image(data->mlx, EFRONT0,&size, &size);
+	data->img->efront1 = mlx_xpm_file_to_image(data->mlx, EFRONT1,&size, &size);
+	data->img->efront2 = mlx_xpm_file_to_image(data->mlx, EFRONT2,&size, &size);
+	data->img->eleft0 = mlx_xpm_file_to_image(data->mlx, ELEFT0,&size, &size);
+	data->img->eleft1 = mlx_xpm_file_to_image(data->mlx, ELEFT1,&size, &size);
+	data->img->eleft2 = mlx_xpm_file_to_image(data->mlx, ELEFT2,&size, &size);
+	data->img->eright0 = mlx_xpm_file_to_image(data->mlx, ERIGHT0,&size, &size);
+	data->img->eright1 = mlx_xpm_file_to_image(data->mlx, ERIGHT1,&size, &size);
+	data->img->eright2 = mlx_xpm_file_to_image(data->mlx, ERIGHT2,&size, &size);
 }
 
 void	data_init(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/29 22:49:20 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/30 19:55:33 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@
 # define ERROR_ARGUMENTS 201
 # define ERROR_TYPE 202
 # define ERROR_MAP 203
+
+/* Dir */
+# define LEFT 0
+# define RIGHT 1
+# define UP 2
+# define DOWN 3
 
 /* Path textures */
 # define WALL_00 "./textures/wall/wall_00.xpm"
@@ -92,9 +98,12 @@ typedef struct s_data
 	int		height;
 	int		pplayer_h;
 	int		pplayer_w;
+	int		penemy_h;
+	int		penemy_w;
 	int		c;
 	int		p;
 	int		e;
+	int		enemy;
 	int		ff_c;
 	int		ff_e;
 	char	**map;
