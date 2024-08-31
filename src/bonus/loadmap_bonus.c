@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/28 19:05:45 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/31 22:57:45 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,20 @@ static void	ft_checkitems(char *line, t_data *data)
 	{
 		if (line[x] == 'P')
 		{
-			data->pplayer_h = data->height - 1;
-			data->pplayer_w = x;
+			data->player->pos_h = data->height - 1;
+			data->player->pos_w = x;
 			data->p++;
 		}
 		if (line[x] == 'C')
 			data->c++;
 		if (line[x] == 'E')
 			data->e++;
+		if (line[x] == 'A')
+		{
+			data->enemy->pos_h = data->height - 1;
+			data->enemy->pos_w = x;
+			data->enemy_++;
+		}
 		x++;
 	}
 }
@@ -105,7 +111,7 @@ static void	ft_ensure(char *pathname, t_data *data)
 		data->height++;
 	}
 	close(fd);
-	if (data->p != 1 || data->e != 1 || data->c < 1)
+	if (data->p != 1 || data->e != 1 || data->c < 1 || data->enemy_ < 1)
 		ft_error_handler("Map: Invalid items", ERROR_MAP, NULL, data);
 	if (data->height <= 1 || data->width <= 1 || error == -1)
 		ft_error_handler("Map: empty map", ERROR_MAP, NULL, data);
@@ -119,7 +125,7 @@ void	ft_loadmap(char *pathname, t_data *data)
 	ft_ensure(pathname, data);
 	ft_create_matrix(pathname, data);
 	copy_map = ft_copymap(data->map, data);
-	ft_floodfill(copy_map, data, data->pplayer_w, data->pplayer_h);
+	ft_floodfill(copy_map, data, data->player->pos_w, data->player->pos_h);
 	if (data->ff_c != data->c || data->ff_e != 1)
 	{
 		ft_free_map(copy_map);

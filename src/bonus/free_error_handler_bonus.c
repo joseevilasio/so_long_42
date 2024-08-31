@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/28 19:07:24 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/31 23:46:15 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,32 +60,33 @@ void	ft_free_data(t_data *data)
 		ft_free_map(data->map);
 	if (data->new_map)
 		ft_free_map(data->new_map);
-	if (data->img)
-		ft_free_image(data);
+	if (data->enemy->frames)
+		ft_free_image(data->enemy->frames, data);
+	if (data->background->frames)
+		ft_free_image(data->background->frames, data);
+	if (data->player->frames)
+		ft_free_image(data->player->frames, data);
+	if (data->collectibles->frames)
+		ft_free_image(data->collectibles->frames, data);
 	if (!data->mlx)
 		free(data);
+	free(data->player);
+	free(data->collectibles);
+	free(data->background);
+	free(data->enemy);
 }
 
-void	ft_free_image(t_data *data)
+void	ft_free_image(void **frames, t_data *data)
 {
-	if (data->img->wall_00)
-		mlx_destroy_image(data->mlx, data->img->wall_00);
-	if (data->img->wall_01)
-		mlx_destroy_image(data->mlx, data->img->wall_01);
-	if (data->img->coll)
-		mlx_destroy_image(data->mlx, data->img->coll);
-	if (data->img->exit)
-		mlx_destroy_image(data->mlx, data->img->exit);
-	if (data->img->player)
-		mlx_destroy_image(data->mlx, data->img->player);
-	if (data->img->empty)
-		mlx_destroy_image(data->mlx, data->img->empty);
-	if (data->img->wall_1)
-		mlx_destroy_image(data->mlx, data->img->wall_1);
-	if (data->img->wall_2)
-		mlx_destroy_image(data->mlx, data->img->wall_2);
-	if (data->img->player_1)
-		mlx_destroy_image(data->mlx, data->img->player_1);
-	if (data->img)
-		free(data->img);
+	int	i;
+
+	i = 0;
+	while (frames[i])
+	{
+		mlx_destroy_image(data->mlx, frames[i]);
+		i++;
+	}
+	if (frames)
+		free(frames);
+	
 }

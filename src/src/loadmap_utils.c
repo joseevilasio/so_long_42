@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 13:35:01 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:32:27 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_open(char *pathname, t_data *data)
 		ft_error_handler("Invalid file type.", ERROR_TYPE, NULL, data);
 	fd = open(pathname, O_RDONLY);
 	if (fd == -1)
-		ft_error_handler("Error", ERROR_OPEN, NULL, data);
+		ft_error_handler("Error\n", ERROR_OPEN, NULL, data);
 	return (fd);
 }
 

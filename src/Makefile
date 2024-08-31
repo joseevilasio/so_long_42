@@ -15,11 +15,12 @@ MLIBX_DIR := libs/minilibx-linux
 LIBFT := libs/libft
 
 SRCS := src/so_long.c src/ft_loadmap.c src/so_long_utils.c\
-		src/free_error_handler.c src/loadmap_utils.c src/ft_render.c\
+	src/free_error_handler.c src/loadmap_utils.c src/ft_render.c\
 
 SRCS_BONUS := bonus/so_long_bonus.c bonus/loadmap_bonus.c\
-		bonus/free_error_handler_bonus.c bonus/initiators_bonus.c\
-		bonus/loadmap_utils_bonus.c bonus/render_bonus.c\
+	bonus/free_error_handler_bonus.c bonus/initiators_bonus.c\
+	bonus/loadmap_utils_bonus.c bonus/render_bonus.c bonus/enemy_bonus.c\
+	bonus/background_bonus.c bonus/player_bonus.c bonus/collectibles_bonus.c \
 
 all:	$(NAME)
 

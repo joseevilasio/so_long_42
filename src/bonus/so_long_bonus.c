@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/28 19:08:38 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/31 23:38:59 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,23 +23,15 @@ static int	close_window(t_data *data)
 }
 int	animations(t_data *data)
 {
-	time_t	r_curr_time;
-	// time_t	c_curr_time;
-	// time_t	r_move_time;
+	time_t	curr_time;
 
-	r_curr_time = time(NULL);
-	// r_move_time = 1;
-	if (r_curr_time - data->r_move_time >= 1)
+	curr_time = time(NULL);
+	if (curr_time - data->move_time >= 1)
 	{
-		water(data);
-		data->r_move_time = r_curr_time;
+		enemy(data);
+		data->move_time = curr_time;
 	}
-	// c_curr_time = time(NULL);
-	// if (c_curr_time - game->c_move_time >= KNIGHT_INTERVAL)
-	// {
-	// 	move_knights(game);
-	// 	game->c_move_time = c_curr_time;
-	// }
+	collectibles(data);
 	return (0);
 }
 
@@ -48,20 +40,20 @@ static int	move(t_data *data, int y, int x)
 	int	old_x;
 	int	old_y;
 
-	old_x = data->pplayer_w;
-	old_y = data->pplayer_h;
+	old_x = data->player->pos_w;
+	old_y = data->player->pos_h;
 	if (data->new_map[y][x] == '1')
 		return (0);
 	if (data->new_map[y][x] == 'C')
 	{
 		data->new_map[y][x] = '0';
-		data->bag++;
+		data->player->bag++;
 	}
-	data->pplayer_w = x;
-	data->pplayer_h = y;
+	data->player->pos_w = x;
+	data->player->pos_h = y;
 	data->new_map[old_y][old_x] = '0';
 	data->new_map[y][x] = 'P';
-	ft_render_layer(data, old_y, old_x);
+	player(data, old_y, old_x);
 	ft_printf("Move count: %d \n", data->movements);
 	return (1);
 }
@@ -71,16 +63,16 @@ static int	controller(int keysym, t_data *data)
 	if (keysym == XK_Escape)
 		close_window(data);
 	if (keysym == XK_A || keysym == XK_a || keysym == XK_Left)
-		data->movements += move(data, data->pplayer_h, data->pplayer_w - 1);
+		data->movements += move(data, data->player->pos_h, data->player->pos_w - 1);
 	if (keysym == XK_D || keysym == XK_d || keysym == XK_Right)
-		data->movements += move(data, data->pplayer_h, data->pplayer_w + 1);
+		data->movements += move(data, data->player->pos_h, data->player->pos_w + 1);
 	if (keysym == XK_W || keysym == XK_w || keysym == XK_Up)
-		data->movements += move(data, data->pplayer_h - 1, data->pplayer_w);
+		data->movements += move(data, data->player->pos_h - 1, data->player->pos_w);
 	if (keysym == XK_S || keysym == XK_s || keysym == XK_Down)
-		data->movements += move(data, data->pplayer_h + 1, data->pplayer_w);
-	if (data->map[data->pplayer_h][data->pplayer_w] == 'E')
+		data->movements += move(data, data->player->pos_h + 1, data->player->pos_w);
+	if (data->map[data->player->pos_h][data->player->pos_w] == 'E')
 	{
-		if (data->c == data->bag)
+		if (data->c == data->player->bag)
 		{
 			ft_printf(" --- END ---");
 			close_window(data);
@@ -98,11 +90,10 @@ int	main(int argc, char **argv)
 	{
 		data = malloc(sizeof(t_data));
 		if (!data)
-		ft_error_handler("Error", ERROR_MALLOC, NULL, NULL);
+		ft_error_handler("Error\n", ERROR_MALLOC, NULL, NULL);
 		all_init(data, argv[1]);
-		ft_render_background(data);
-		ft_render_layer(data, 0, 0);
-		//mlx_clear_window(data->mlx, data->win);
+		background(data);
+		player(data, 0, 0);
 		mlx_loop_hook(data->mlx, animations, data);
 		mlx_hook(data->win, KeyPress, KeyPressMask, controller, data);
 		mlx_hook(data->win, DestroyNotify, NoEventMask, close_window, data);

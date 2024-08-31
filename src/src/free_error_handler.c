@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/26 18:41:24 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:33:07 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_error_handler(char *error, int signal, char *str, t_data *data)
 			free(str);
 		if (data)
 			ft_free_data(data);
-		ft_printf("Error: %s\n", error);
+		ft_printf("Error\n %s\n", error);
 		exit (signal);
 	}
 	else

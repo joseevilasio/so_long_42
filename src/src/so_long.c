@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 14:24:32 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:32:05 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	main(int argc, char **argv)
 		ft_loadmap(argv[1], &data);
 		data.mlx = mlx_init();
 		if (!data.mlx)
-			ft_error_handler("Error", ERROR_MLX, NULL, &data);
+			ft_error_handler("Error\n", ERROR_MLX, NULL, &data);
 		width = PXL * data.width;
 		height = PXL * data.height;
 		data.win = mlx_new_window(data.mlx, width, height, "so_long");

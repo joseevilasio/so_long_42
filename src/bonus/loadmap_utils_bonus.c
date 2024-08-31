@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/25 15:55:49 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/08/31 21:33:50 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_strremove(char *str, t_data *data)
 			return (str);
 		new_str = ft_strtrim(str, "\n");
 		if (!new_str)
-			ft_error_handler("Error", ERROR_MALLOC, str, data);
+			ft_error_handler("Error\n", ERROR_MALLOC, str, data);
 		free(str);
 		return (new_str);
 	}
@@ -70,7 +70,7 @@ char	**ft_copymap(char **source, t_data *data)
 	map = NULL;
 	map = (char **) malloc((data->height + 1) * sizeof(char *));
 	if (!map)
-		ft_error_handler("Error", ERROR_MALLOC, NULL, data);
+		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
 	while (source[i])
 	{
 		map[i] = ft_strdup(source[i]);
