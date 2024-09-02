@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/31 23:38:59 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:36:10 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	animations(t_data *data)
 	curr_time = time(NULL);
 	if (curr_time - data->move_time >= 1)
 	{
-		enemy(data);
+		enemy(data); //verificar que as vezes tem delay na inicializacao
 		data->move_time = curr_time;
 	}
 	collectibles(data);

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 22:23:15 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/31 23:40:14 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:01:30 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,25 @@ void	collectibles_init(t_data *data)
 		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
 }
 
+void	put_animal(int col, int li, t_data *data)
+{
+	if (data->collectibles->current_frame == 0)
+		put_image(data, data->collectibles->frames[0], col, li);
+	if (data->collectibles->current_frame == 1)
+		put_image(data, data->collectibles->frames[1], col, li);
+	if (data->collectibles->current_frame == 2)
+		put_image(data, data->collectibles->frames[2], col, li);
+	if (data->collectibles->current_frame == 3)
+		put_image(data, data->collectibles->frames[3], col, li);
+}
+
 void	collectibles(t_data *data)
 {
 	int	li;
 	int	col;
 
 	data->collectibles->frame_counter++;
-	if (data->collectibles->frame_counter >= 500) 
+	if (data->collectibles->frame_counter >= 1500) 
 	{
 		data->collectibles->current_frame = (data->collectibles->current_frame + 1) % 4;
 		data->collectibles->frame_counter = 0;
@@ -55,16 +67,7 @@ void	collectibles(t_data *data)
 		while (data->new_map[li][col])
 		{
 			if (data->new_map[li][col] == 'C')
-			{
-				if (data->collectibles->current_frame == 0)
-					put_image(data, data->collectibles->frames[0], col, li);
-				if (data->collectibles->current_frame == 1)
-					put_image(data, data->collectibles->frames[1], col, li);
-				if (data->collectibles->current_frame == 2)
-					put_image(data, data->collectibles->frames[2], col, li);
-				if (data->collectibles->current_frame == 3)
-					put_image(data, data->collectibles->frames[3], col, li);
-			}
+				put_animal(col, li, data);
 			col++;
 		}
 		li++;

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:38:50 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/31 22:42:53 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/02 19:29:49 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define COLL "./textures/coll.xpm"
 # define PLAYER "./textures/player.xpm"
 # define PLAYER_1 "./textures/player_exit.xpm"
+# define PLAYER_2 "./textures/player_left.xpm"
 
 /* Path enemy textures */
 # define EB0 "./textures/enemy/eback0.xpm"
@@ -57,6 +58,7 @@
 # define ER0 "./textures/enemy/eright0.xpm"
 # define ER1 "./textures/enemy/eright1.xpm"
 # define ER2 "./textures/enemy/eright2.xpm"
+# define BLL "./textures/enemy/ball.xpm"
 
 /* Path crab textures */
 # define CRAB0 "./textures/crab/crab0.xpm"

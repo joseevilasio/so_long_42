@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/31 23:43:25 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/02 20:12:06 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ void	enemy_image_init(t_data *data)
 	data->enemy->frames[9] = mlx_xpm_file_to_image(data->mlx, ER0, &len, &len);
 	data->enemy->frames[10] = mlx_xpm_file_to_image(data->mlx, ER1, &len, &len);
 	data->enemy->frames[11] = mlx_xpm_file_to_image(data->mlx, ER2, &len, &len);
-	data->enemy->frames[12] = NULL;
+	data->enemy->frames[12] = mlx_xpm_file_to_image(data->mlx, BLL, &len, &len);
+	data->enemy->frames[13] = NULL;
 }
 
 void	enemy_init(t_data *data)
 {
-	data->enemy->len_f = 13;
+	data->enemy->len_f = 14;
 	data->enemy->pos_h = 0;
 	data->enemy->pos_w = 0;
 	data->enemy->current_frame = 0;
@@ -80,9 +81,12 @@ void	enemy_render(t_data *data, int o_y, int o_x, int dir)
 	}
 	if (o_x && o_y)
 	{
-		put_image(data, data->background->frames[4], o_x, o_y);
-		// if (data->map[o_y][o_x] == 'E')
-		// 	put_image(data, data->img->exit, o_x, o_y);
+		if (data->map[o_y][o_x] == 'E')
+			put_image(data, data->background->frames[3], o_x, o_y);
+		else if (data->new_map[o_y][o_x] == 'B')
+			put_image(data, data->enemy->frames[12],  o_x, o_y);
+		else
+			put_image(data, data->background->frames[4], o_x, o_y);
 	}
 }
 
@@ -97,13 +101,17 @@ int	enemy_move(t_data *data, int y, int x, int dir)
 		return (0);
 	if (data->new_map[y][x] == 'C')
 	{
-		data->new_map[y][x] = '0';
+		data->new_map[y][x] = 'B';
 		data->enemy->bag++;
 	}
 	data->enemy->pos_w = x;
 	data->enemy->pos_h = y;
-	data->new_map[old_y][old_x] = '0';
+	if (data->new_map[old_y][old_x] == 'B')
+		data->new_map[old_y][old_x] = 'B';
+	else
+		data->new_map[old_y][old_x] = '0';
 	data->new_map[y][x] = 'A';
+	ft_printmap(data->new_map);
 	enemy_render(data, old_y, old_x, dir);
 	return (1);
 }
