@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/02 20:12:06 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/03 21:30:33 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,10 @@ int	enemy_move(t_data *data, int y, int x, int dir)
 	if (data->new_map[y][x] == '1')
 		return (0);
 	if (data->new_map[y][x] == 'C')
-	{
-		data->new_map[y][x] = 'B';
 		data->enemy->bag++;
-	}
 	data->enemy->pos_w = x;
 	data->enemy->pos_h = y;
-	if (data->new_map[old_y][old_x] == 'B')
+	if (data->map[old_y][old_x] == 'C')
 		data->new_map[old_y][old_x] = 'B';
 	else
 		data->new_map[old_y][old_x] = '0';
@@ -129,13 +126,10 @@ int	enemy(t_data *data)
 		enemy_move(data, data->enemy->pos_h - 1, data->enemy->pos_w, dir);
 	if (dir == DOWN)
 		enemy_move(data, data->enemy->pos_h + 1, data->enemy->pos_w, dir);
-	// if (data->new_map[data->pplayer_h][data->pplayer_w] == 'P')
+	// if (data->new_map[data->enemy->pos_h][data->enemy->pos_w] == 'P')
 	// {
-	// 	if (data->c == data->bag)
-	// 	{
-	// 		ft_printf(" --- END ---");
-	// 		close_window(data);
-	// 	}
+	// 	ft_printf(" --- END ---");
+	// 	close_window(data);
 	// }
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 21:58:04 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/31 23:44:35 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/03 22:55:25 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,23 @@ void	background_init(t_data *data)
 	data->background->frames = (void **) malloc(data->background->len_f * sizeof(void *));
 	if (!data->background->frames)
 		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
+}
+
+void	shark(t_data *data)
+{
+	int	dir;
+
+	dir = rand() % 2;
+	if (dir == LEFT)
+	{
+		
+	}
+		enemy_move(data, data->enemy->pos_h, data->enemy->pos_w - 1, dir);
+	if (dir == RIGHT)
+	{
+		
+	}
+		enemy_move(data, data->enemy->pos_h, data->enemy->pos_w + 1, dir);
 }
 
 void	background(t_data *data)

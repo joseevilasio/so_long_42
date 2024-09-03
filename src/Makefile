@@ -12,6 +12,8 @@ MLXFLAGS := -L ./libs/minilibx-linux -lm -lmlx -Ilmlx -lXext -lX11
 
 MLIBX_DIR := libs/minilibx-linux
 
+MLIBX := minilibx
+
 LIBFT := libs/libft
 
 SRCS := src/so_long.c src/ft_loadmap.c src/so_long_utils.c\
@@ -30,11 +32,11 @@ all:	$(NAME)
 # # $(OBJS_BONUS): $(SRCS_BONUS)
 # # 	$(CC) $(CFLAGS) -c $*.c -o $@
 
-$(NAME): $(MLIBX_DIR)
+$(NAME):
 	make all -C $(LIBFT)
 	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(MLXFLAGS) $(LIBFT)/libft.a
 
-bonus: $(MLIBX_DIR)
+bonus:
 	make all -C $(LIBFT)
 	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME) $(MLXFLAGS) $(LIBFT)/libft.a
 
