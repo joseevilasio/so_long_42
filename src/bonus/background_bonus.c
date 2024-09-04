@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 21:58:04 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/03 22:55:25 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/04 20:20:29 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,13 @@ void	background_init(t_data *data)
 
 void	shark(t_data *data)
 {
-	int	dir;
+	int	x;
 
-	dir = rand() % 2;
-	if (dir == LEFT)
-	{
-		
-	}
-		enemy_move(data, data->enemy->pos_h, data->enemy->pos_w - 1, dir);
-	if (dir == RIGHT)
-	{
-		
-	}
-		enemy_move(data, data->enemy->pos_h, data->enemy->pos_w + 1, dir);
+	x = data->background->current_frame;
+	put_image(data, data->background->frames[1], x, data->height - 1);
+	put_image(data, data->background->frames[0], x - 1, data->height - 1);
+	if (data->background->current_frame == data->width)
+		data->background->current_frame = -1;
 }
 
 void	background(t_data *data)

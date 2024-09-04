@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/03 22:24:24 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/04 20:29:18 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static int	close_window(t_data *data)
 	free(data);
 	exit(0);
 }
+
 int	animations(t_data *data)
 {
 	time_t	curr_time;
@@ -29,6 +30,8 @@ int	animations(t_data *data)
 	if (curr_time - data->move_time >= 1)
 	{
 		enemy(data); //verificar que as vezes tem delay na inicializacao
+		shark(data);
+		data->background->current_frame++;
 		data->move_time = curr_time;
 	}
 	collectibles(data);
@@ -48,7 +51,7 @@ static int	move(t_data *data, int y, int x)
 		data->player->bag++;
 	data->player->pos_w = x;
 	data->player->pos_h = y;
-	// if (data->map[old_y][old_x] == 'C')
+	// if (data->map[old_y][old_x] == 'B')
 	// 	data->new_map[old_y][old_x] = 'B';
 	// else
 	data->new_map[old_y][old_x] = '0';

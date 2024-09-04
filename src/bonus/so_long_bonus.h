@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/02 19:36:20 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/04 19:48:07 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	put_image(t_data *data, void *img, int column, int line);
 void	player(t_data *data, int old_y, int old_x);
 int		enemy(t_data *data);
 void	collectibles(t_data *data);
+void	shark(t_data *data);
 
 /* Initiators */
 void	all_init(t_data *data, char *path);
