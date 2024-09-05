@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 22:23:15 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/02 19:01:30 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:09:27 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,12 @@ void	collectibles(t_data *data)
 		data->collectibles->frame_counter = 0;
 	}
 	li = 0;
-	while (data->new_map[li])
+	while (data->map[li])
 	{
 		col = 0;
-		while (data->new_map[li][col])
+		while (data->map[li][col])
 		{
-			if (data->new_map[li][col] == 'C')
+			if (data->map[li][col] == 'C')
 				put_animal(col, li, data);
 			col++;
 		}

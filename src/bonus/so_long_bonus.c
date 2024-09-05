@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/04 20:29:18 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:26:32 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,18 @@ static int	move(t_data *data, int y, int x)
 	old_y = data->player->pos_h;
 	if (data->new_map[y][x] == '1')
 		return (0);
-	if (data->new_map[y][x] == 'C')
+	if (data->map[y][x] == 'C')
+	{
+		data->map[y][x] = '0';
 		data->player->bag++;
+	}
 	data->player->pos_w = x;
 	data->player->pos_h = y;
-	// if (data->map[old_y][old_x] == 'B')
-	// 	data->new_map[old_y][old_x] = 'B';
-	// else
 	data->new_map[old_y][old_x] = '0';
 	data->new_map[y][x] = 'P';
 	player(data, old_y, old_x);
 	ft_printf("Move count: %d \n", data->movements);
+	ft_printf("Bag player: %d | Bag enemy: %d\n", data->player->bag, data->enemy->bag);
 	return (1);
 }
 
@@ -73,13 +74,15 @@ static int	controller(int keysym, t_data *data)
 		data->movements += move(data, data->player->pos_h - 1, data->player->pos_w);
 	if (keysym == XK_S || keysym == XK_s || keysym == XK_Down)
 		data->movements += move(data, data->player->pos_h + 1, data->player->pos_w);
-	if (data->map[data->player->pos_h][data->player->pos_w] == 'E')
+	if (data->map[data->player->pos_h][data->player->pos_w] == 'E' &&
+		data->c == (data->player->bag + data->enemy->bag))
 	{
-		if (data->c == data->player->bag)
-		{
-			ft_printf(" --- END ---");
-			close_window(data);
-		}
+		ft_printf(" --- END ---\n");
+		if (data->player->bag <= data->enemy->bag)
+			ft_printf(" --- ASH WIN ---");
+		else
+			ft_printf(" --- CAPYBARA WIN ---");
+		close_window(data);
 	}
 	return (0);
 }

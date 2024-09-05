@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:38:50 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/04 20:27:08 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:11:18 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define WALL_2 "./textures/wall/wall_2.xpm"
 # define EXIT "./textures/exit.xpm"
 # define EMPTY "./textures/empty.xpm"
+# define SHARK "./textures/shark/sharkleft.xpm"
 
 # define COLL "./textures/coll.xpm"
 # define PLAYER "./textures/player.xpm"

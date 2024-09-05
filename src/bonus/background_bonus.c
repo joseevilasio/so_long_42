@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 21:58:04 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/04 20:20:29 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/04 22:41:03 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ void	background_image_init(t_data *data)
 	data->background->frames[2] = mlx_xpm_file_to_image(data->mlx, WALL_2, &len, &len);
 	data->background->frames[3] = mlx_xpm_file_to_image(data->mlx, EXIT, &len, &len);
 	data->background->frames[4] = mlx_xpm_file_to_image(data->mlx, EMPTY, &len, &len);
-	data->background->frames[5] = NULL;
+	data->background->frames[5] = mlx_xpm_file_to_image(data->mlx, SHARK, &len, &len);
+	data->background->frames[6] = NULL;
 }
 
 void	background_init(t_data *data)
 {
-	data->background->len_f = 6;
+	data->background->len_f = 7;
 	data->background->pos_h = 0;
 	data->background->pos_w = 0;
 	data->background->current_frame = 0;
@@ -41,10 +42,14 @@ void	background_init(t_data *data)
 void	shark(t_data *data)
 {
 	int	x;
+	// int i = 0;
 
 	x = data->background->current_frame;
-	put_image(data, data->background->frames[1], x, data->height - 1);
+	// while (i++ < data->width)
+	// 	put_image(data, data->background->frames[0], x, data->height - 1);
+	put_image(data, data->background->frames[5], x, data->height - 1);
 	put_image(data, data->background->frames[0], x - 1, data->height - 1);
+	// mlx_put_image_to_window(data->mlx, data->win, data->background->frames[5], x * 10,  (data->height - 1) * PXL);
 	if (data->background->current_frame == data->width)
 		data->background->current_frame = -1;
 }

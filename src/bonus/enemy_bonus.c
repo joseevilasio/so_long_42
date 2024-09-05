@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/03 21:30:33 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/05 22:08:39 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,34 +56,18 @@ void	enemy_init(t_data *data)
 void	enemy_render(t_data *data, int o_y, int o_x, int dir)
 {
 	if (dir == LEFT)
-	{
-		//put_image(data, data->img->eleft0, data->penemy_w, data->penemy_h);
-		//put_image(data, data->img->eleft1, data->penemy_w, data->penemy_h);
 		put_image(data, data->enemy->frames[8], data->enemy->pos_w, data->enemy->pos_h);
-	}
 	if (dir == RIGHT)
-	{
-		//put_image(data, data->img->eright0, data->penemy_w, data->penemy_h);
-		//put_image(data, data->img->eright1, data->penemy_w, data->penemy_h);
 		put_image(data, data->enemy->frames[11], data->enemy->pos_w, data->enemy->pos_h);
-	}
 	if (dir == UP)
-	{
-		//put_image(data, data->img->eback0, data->penemy_w, data->penemy_h);
-		//put_image(data, data->img->eback1, data->penemy_w, data->penemy_h);
 		put_image(data, data->enemy->frames[2], data->enemy->pos_w, data->enemy->pos_h);
-	}
 	if (dir == DOWN)
-	{
-		//put_image(data, data->img->efront0, data->penemy_w, data->penemy_h);
-		//put_image(data, data->img->efront1, data->penemy_w, data->penemy_h);
 		put_image(data, data->enemy->frames[5], data->enemy->pos_w, data->enemy->pos_h);
-	}
 	if (o_x && o_y)
 	{
 		if (data->map[o_y][o_x] == 'E')
 			put_image(data, data->background->frames[3], o_x, o_y);
-		else if (data->new_map[o_y][o_x] == 'B')
+		else if (data->map[o_y][o_x] == 'B')
 			put_image(data, data->enemy->frames[12],  o_x, o_y);
 		else
 			put_image(data, data->background->frames[4], o_x, o_y);
@@ -99,16 +83,16 @@ int	enemy_move(t_data *data, int y, int x, int dir)
 	old_y = data->enemy->pos_h;
 	if (data->new_map[y][x] == '1')
 		return (0);
-	if (data->new_map[y][x] == 'C')
+	if (data->map[y][x] == 'C')
+	{
+		data->map[y][x] = 'B';
 		data->enemy->bag++;
+	}
 	data->enemy->pos_w = x;
 	data->enemy->pos_h = y;
-	if (data->map[old_y][old_x] == 'C')
-		data->new_map[old_y][old_x] = 'B';
-	else
-		data->new_map[old_y][old_x] = '0';
+	data->new_map[old_y][old_x] = '0';
 	data->new_map[y][x] = 'A';
-	ft_printmap(data->new_map);
+	//ft_printmap(data->new_map); //retirar
 	enemy_render(data, old_y, old_x, dir);
 	return (1);
 }
