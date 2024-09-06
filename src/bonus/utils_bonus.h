@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:38:50 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/05 22:11:18 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/06 20:12:24 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_data
 	void	*mlx;
 	void	*win;
 	int		movements;
+	void	*img_m;
 	time_t	move_time;
 	t_image	*player;
 	t_image	*enemy;

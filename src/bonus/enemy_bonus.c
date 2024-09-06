@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/05 22:08:39 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/06 19:59:25 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ int	enemy_move(t_data *data, int y, int x, int dir)
 	data->enemy->pos_w = x;
 	data->enemy->pos_h = y;
 	data->new_map[old_y][old_x] = '0';
+	if (data->new_map[y][x] == 'P')
+		close_window(data, 2);
 	data->new_map[y][x] = 'A';
 	//ft_printmap(data->new_map); //retirar
 	enemy_render(data, old_y, old_x, dir);
@@ -113,7 +115,7 @@ int	enemy(t_data *data)
 	// if (data->new_map[data->enemy->pos_h][data->enemy->pos_w] == 'P')
 	// {
 	// 	ft_printf(" --- END ---");
-	// 	close_window(data);
+	// 	// close_window(data);
 	// }
 	return (0);
 }

@@ -6,14 +6,24 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/05 22:26:32 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/06 20:34:17 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-static int	close_window(t_data *data)
+int	close_window(t_data *data, int mode)
 {
+	if (mode == 1)
+	{
+		ft_printf(" --- END ---\n");
+		if (data->player->bag > data->enemy->bag)
+			ft_printf(" --- CAPYBARA WIN ---");
+		else
+			ft_printf(" --- ASH WIN ---");
+	}
+	if (mode == 2)
+		ft_printf(" --- ASH WIN ---");
 	ft_error_handler(NULL, 0, NULL, data);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
@@ -55,6 +65,8 @@ static int	move(t_data *data, int y, int x)
 	data->player->pos_w = x;
 	data->player->pos_h = y;
 	data->new_map[old_y][old_x] = '0';
+	if (data->new_map[y][x] == 'A')
+		close_window(data, 2);
 	data->new_map[y][x] = 'P';
 	player(data, old_y, old_x);
 	ft_printf("Move count: %d \n", data->movements);
@@ -65,7 +77,7 @@ static int	move(t_data *data, int y, int x)
 static int	controller(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
-		close_window(data);
+		close_window(data, 0);
 	if (keysym == XK_A || keysym == XK_a || keysym == XK_Left)
 		data->movements += move(data, data->player->pos_h, data->player->pos_w - 1);
 	if (keysym == XK_D || keysym == XK_d || keysym == XK_Right)
@@ -74,15 +86,10 @@ static int	controller(int keysym, t_data *data)
 		data->movements += move(data, data->player->pos_h - 1, data->player->pos_w);
 	if (keysym == XK_S || keysym == XK_s || keysym == XK_Down)
 		data->movements += move(data, data->player->pos_h + 1, data->player->pos_w);
-	if (data->map[data->player->pos_h][data->player->pos_w] == 'E' &&
-		data->c == (data->player->bag + data->enemy->bag))
+	if ((data->map[data->player->pos_h][data->player->pos_w] == 'E' &&
+		data->c == (data->player->bag + data->enemy->bag)))
 	{
-		ft_printf(" --- END ---\n");
-		if (data->player->bag <= data->enemy->bag)
-			ft_printf(" --- ASH WIN ---");
-		else
-			ft_printf(" --- CAPYBARA WIN ---");
-		close_window(data);
+		close_window(data, 1);
 	}
 	return (0);
 }
@@ -98,6 +105,7 @@ int	main(int argc, char **argv)
 		if (!data)
 		ft_error_handler("Error\n", ERROR_MALLOC, NULL, NULL);
 		all_init(data, argv[1]);
+		put_move(data);
 		background(data);
 		player(data, 0, 0);
 		mlx_loop_hook(data->mlx, animations, data);
