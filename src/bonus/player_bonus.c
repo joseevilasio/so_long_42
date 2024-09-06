@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 22:14:55 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/05 22:09:54 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/06 21:00:16 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	player(t_data *data, int o_y, int o_x)
 		put_image(data, data->player->frames[1], data->player->pos_w, data->player->pos_h);
 	if (o_x && o_y)
 	{
-		put_image(data, data->background->frames[4], o_x, o_y);
+		put_image(data, data->backg->frames[4], o_x, o_y);
 		if (data->map[o_y][o_x] == 'E')
-			put_image(data, data->background->frames[3], o_x, o_y);
+			put_image(data, data->backg->frames[3], o_x, o_y);
 		if (data->map[o_y][o_x] == 'B')
 			put_image(data, data->enemy->frames[12], o_x, o_y);
 	}

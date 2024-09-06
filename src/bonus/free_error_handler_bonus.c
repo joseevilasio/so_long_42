@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/05 22:11:48 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/06 20:59:33 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,17 @@ void	ft_free_data(t_data *data)
 		ft_free_map(data->new_map);
 	if (data->enemy->frames)
 		ft_free_image(data->enemy->frames, data);
-	if (data->background->frames)
-		ft_free_image(data->background->frames, data);
+	if (data->backg->frames)
+		ft_free_image(data->backg->frames, data);
 	if (data->player->frames)
 		ft_free_image(data->player->frames, data);
-	if (data->collectibles->frames)
-		ft_free_image(data->collectibles->frames, data);
+	if (data->collect->frames)
+		ft_free_image(data->collect->frames, data);
 	if (!data->mlx)
 		free(data);
 	free(data->player);
-	free(data->collectibles);
-	free(data->background);
+	free(data->collect);
+	free(data->backg);
 	free(data->enemy);
 }
 

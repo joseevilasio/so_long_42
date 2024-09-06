@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:44:48 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/06 20:36:16 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/06 20:59:56 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	data_init(t_data *data)
 	data->move_time = time(NULL);
 	data->player = (t_image *) malloc(sizeof(t_image));
 	data->enemy = (t_image *) malloc(sizeof(t_image));
-	data->background = (t_image *) malloc(sizeof(t_image));
-	data->collectibles = (t_image *) malloc(sizeof(t_image));
+	data->backg = (t_image *) malloc(sizeof(t_image));
+	data->collect = (t_image *) malloc(sizeof(t_image));
 }
 
 void	all_init(t_data *data, char *path)
@@ -54,7 +54,7 @@ void	all_init(t_data *data, char *path)
 	data->win = mlx_new_window(data->mlx, width, height, "Capybara World");
 	if (!data->win)
 		ft_error_handler("Error\n", ERROR_MLX, NULL, data);
-	data->img_m = mlx_new_image(data->mlx, 150, 20);
+	//data->img_m = mlx_new_image(data->mlx, 150, 20);
 	enemy_image_init(data);
 	background_image_init(data);
 	player_image_init(data);

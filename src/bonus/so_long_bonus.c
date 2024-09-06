@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/06 20:34:17 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/06 21:00:25 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	animations(t_data *data)
 	{
 		enemy(data); //verificar que as vezes tem delay na inicializacao
 		shark(data);
-		data->background->current_frame++;
+		data->backg->current_frame++;
 		data->move_time = curr_time;
 	}
 	collectibles(data);

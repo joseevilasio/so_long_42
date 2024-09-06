@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:38:50 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/06 20:12:24 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/06 20:47:01 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ typedef struct s_data
 	time_t	move_time;
 	t_image	*player;
 	t_image	*enemy;
-	t_image	*background;
-	t_image	*collectibles;
+	t_image	*backg;
+	t_image	*collect;
 }	t_data;
 
 #endif //UTILS_BONUS_H

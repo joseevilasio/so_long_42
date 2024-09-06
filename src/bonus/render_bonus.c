@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:47:34 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/06 20:35:45 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/06 20:45:39 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,21 @@ void	put_move(t_data *data)
 	char	*count;
 	char	*s;
 	char	*font;
+	int i = 0;
+	int	*data_;
+	int *a = 0;
+	int *b = 0;
+	int *c = 0;
+		
+	data_ = (int *)mlx_get_data_addr(data->img_m, a, b, c);
+	if (!data_)
+		exit(0);
+	i = 0;
+	while (i < 150 * 20)
+	{
+		data_[i] = 0x3F565A;
+		i++;
+	}
 
 	font = "-misc-fixed-bold-r-normal--18-120-100-100-c-90-iso8859-9";
 	count = ft_itoa(data->movements);
