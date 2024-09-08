@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:38:50 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/06 20:47:01 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/08 19:57:15 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,25 +40,18 @@
 # define EXIT "./textures/exit.xpm"
 # define EMPTY "./textures/empty.xpm"
 # define SHARK "./textures/shark/sharkleft.xpm"
+# define COUNT "./textures/count_bar.xpm"
 
-# define COLL "./textures/coll.xpm"
+/* Path player textures */
 # define PLAYER "./textures/player.xpm"
 # define PLAYER_1 "./textures/player_exit.xpm"
 # define PLAYER_2 "./textures/player_left.xpm"
 
 /* Path enemy textures */
-# define EB0 "./textures/enemy/eback0.xpm"
 # define EB1 "./textures/enemy/eback1.xpm"
-# define EB2 "./textures/enemy/eback2.xpm"
-# define EF0 "./textures/enemy/efront0.xpm"
 # define EF1 "./textures/enemy/efront1.xpm"
-# define EF2 "./textures/enemy/efront2.xpm"
-# define EL0 "./textures/enemy/eleft0.xpm"
 # define EL1 "./textures/enemy/eleft1.xpm"
-# define EL2 "./textures/enemy/eleft2.xpm"
-# define ER0 "./textures/enemy/eright0.xpm"
 # define ER1 "./textures/enemy/eright1.xpm"
-# define ER2 "./textures/enemy/eright2.xpm"
 # define BLL "./textures/enemy/ball.xpm"
 
 /* Path crab textures */
@@ -75,7 +68,7 @@ typedef struct s_image
 	int		current_frame;
 	int		frame_counter;
 	int		bag;
-	void	**frames;
+	void	**fr;
 }	t_image;
 
 /* Struct for initial infor about map */
@@ -96,8 +89,8 @@ typedef struct s_data
 	int		movements;
 	void	*img_m;
 	time_t	move_time;
-	t_image	*player;
-	t_image	*enemy;
+	t_image	*plr;
+	t_image	*enm;
 	t_image	*backg;
 	t_image	*collect;
 }	t_data;

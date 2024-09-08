@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/06 20:59:07 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/08 20:07:02 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,58 +19,50 @@ void	enemy_image_init(t_data *data)
 
 	len = PXL;
 	i = 0;
-	while (i < data->enemy->len_f)
+	data->enm->fr = (void *) malloc(data->enm->len_f * sizeof(void *));
+	if (!data->enm->fr)
+		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
+	while (i < data->enm->len_f)
 	{
-		data->enemy->frames[i] = NULL;
+		data->enm->fr[i] = NULL;
 		i++;
 	}
-	data->enemy->frames[0] = mlx_xpm_file_to_image(data->mlx, EB0, &len, &len);
-	data->enemy->frames[1] = mlx_xpm_file_to_image(data->mlx, EB1, &len, &len);
-	data->enemy->frames[2] = mlx_xpm_file_to_image(data->mlx, EB2, &len, &len);
-	data->enemy->frames[3] = mlx_xpm_file_to_image(data->mlx, EF0, &len, &len);
-	data->enemy->frames[4] = mlx_xpm_file_to_image(data->mlx, EF1, &len, &len);
-	data->enemy->frames[5] = mlx_xpm_file_to_image(data->mlx, EF2, &len, &len);
-	data->enemy->frames[6] = mlx_xpm_file_to_image(data->mlx, EL0, &len, &len);
-	data->enemy->frames[7] = mlx_xpm_file_to_image(data->mlx, EL1, &len, &len);
-	data->enemy->frames[8] = mlx_xpm_file_to_image(data->mlx, EL2, &len, &len);
-	data->enemy->frames[9] = mlx_xpm_file_to_image(data->mlx, ER0, &len, &len);
-	data->enemy->frames[10] = mlx_xpm_file_to_image(data->mlx, ER1, &len, &len);
-	data->enemy->frames[11] = mlx_xpm_file_to_image(data->mlx, ER2, &len, &len);
-	data->enemy->frames[12] = mlx_xpm_file_to_image(data->mlx, BLL, &len, &len);
-	data->enemy->frames[13] = NULL;
+	data->enm->fr[0] = load_image(data, EB1, len);
+	data->enm->fr[1] = load_image(data, EF1, len);
+	data->enm->fr[2] = load_image(data, EL1, len);
+	data->enm->fr[3] = load_image(data, ER1, len);
+	data->enm->fr[4] = load_image(data, BLL, len);
 }
 
 void	enemy_init(t_data *data)
 {
-	data->enemy->len_f = 14;
-	data->enemy->pos_h = 0;
-	data->enemy->pos_w = 0;
-	data->enemy->current_frame = 0;
-	data->enemy->frame_counter = 0;
-	data->enemy->bag = 0;
-	data->enemy->frames = (void **) malloc(data->enemy->len_f * sizeof(void *));
-	if (!data->enemy->frames)
-		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
+	data->enm->len_f = 6;
+	data->enm->pos_h = 0;
+	data->enm->pos_w = 0;
+	data->enm->current_frame = 0;
+	data->enm->frame_counter = 0;
+	data->enm->bag = 0;
+	data->enm->fr = NULL;
 }
 
 void	enemy_render(t_data *data, int o_y, int o_x, int dir)
 {
 	if (dir == LEFT)
-		put_image(data, data->enemy->frames[8], data->enemy->pos_w, data->enemy->pos_h);
+		put_image(data, data->enm->fr[2], data->enm->pos_w, data->enm->pos_h);
 	if (dir == RIGHT)
-		put_image(data, data->enemy->frames[11], data->enemy->pos_w, data->enemy->pos_h);
+		put_image(data, data->enm->fr[3], data->enm->pos_w, data->enm->pos_h);
 	if (dir == UP)
-		put_image(data, data->enemy->frames[2], data->enemy->pos_w, data->enemy->pos_h);
+		put_image(data, data->enm->fr[0], data->enm->pos_w, data->enm->pos_h);
 	if (dir == DOWN)
-		put_image(data, data->enemy->frames[5], data->enemy->pos_w, data->enemy->pos_h);
+		put_image(data, data->enm->fr[1], data->enm->pos_w, data->enm->pos_h);
 	if (o_x && o_y)
 	{
 		if (data->map[o_y][o_x] == 'E')
-			put_image(data, data->backg->frames[3], o_x, o_y);
+			put_image(data, data->backg->fr[3], o_x, o_y);
 		else if (data->map[o_y][o_x] == 'B')
-			put_image(data, data->enemy->frames[12],  o_x, o_y);
+			put_image(data, data->enm->fr[4], o_x, o_y);
 		else
-			put_image(data, data->backg->frames[4], o_x, o_y);
+			put_image(data, data->backg->fr[4], o_x, o_y);
 	}
 }
 
@@ -79,17 +71,17 @@ int	enemy_move(t_data *data, int y, int x, int dir)
 	int	old_x;
 	int	old_y;
 
-	old_x = data->enemy->pos_w;
-	old_y = data->enemy->pos_h;
+	old_x = data->enm->pos_w;
+	old_y = data->enm->pos_h;
 	if (data->new_map[y][x] == '1')
 		return (0);
 	if (data->map[y][x] == 'C')
 	{
 		data->map[y][x] = 'B';
-		data->enemy->bag++;
+		data->enm->bag++;
 	}
-	data->enemy->pos_w = x;
-	data->enemy->pos_h = y;
+	data->enm->pos_w = x;
+	data->enm->pos_h = y;
 	data->new_map[old_y][old_x] = '0';
 	if (data->new_map[y][x] == 'P')
 		close_window(data, 2);
@@ -104,12 +96,12 @@ int	enemy(t_data *data)
 
 	dir = rand() % 4;
 	if (dir == LEFT)
-		enemy_move(data, data->enemy->pos_h, data->enemy->pos_w - 1, dir);
+		enemy_move(data, data->enm->pos_h, data->enm->pos_w - 1, dir);
 	if (dir == RIGHT)
-		enemy_move(data, data->enemy->pos_h, data->enemy->pos_w + 1, dir);
+		enemy_move(data, data->enm->pos_h, data->enm->pos_w + 1, dir);
 	if (dir == UP)
-		enemy_move(data, data->enemy->pos_h - 1, data->enemy->pos_w, dir);
+		enemy_move(data, data->enm->pos_h - 1, data->enm->pos_w, dir);
 	if (dir == DOWN)
-		enemy_move(data, data->enemy->pos_h + 1, data->enemy->pos_w, dir);
+		enemy_move(data, data->enm->pos_h + 1, data->enm->pos_w, dir);
 	return (0);
 }

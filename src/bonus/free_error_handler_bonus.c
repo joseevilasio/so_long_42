@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/06 20:59:33 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:33:52 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,33 +60,32 @@ void	ft_free_data(t_data *data)
 		ft_free_map(data->map);
 	if (data->new_map)
 		ft_free_map(data->new_map);
-	if (data->enemy->frames)
-		ft_free_image(data->enemy->frames, data);
-	if (data->backg->frames)
-		ft_free_image(data->backg->frames, data);
-	if (data->player->frames)
-		ft_free_image(data->player->frames, data);
-	if (data->collect->frames)
-		ft_free_image(data->collect->frames, data);
+	if (data->enm->fr)
+		ft_free_image(data->enm->fr, data);
+	if (data->backg->fr)
+		ft_free_image(data->backg->fr, data);
+	if (data->plr->fr)
+		ft_free_image(data->plr->fr, data);
+	if (data->collect->fr)
+		ft_free_image(data->collect->fr, data);
 	if (!data->mlx)
 		free(data);
-	free(data->player);
+	free(data->plr);
 	free(data->collect);
 	free(data->backg);
-	free(data->enemy);
+	free(data->enm);
 }
 
-void	ft_free_image(void **frames, t_data *data)
+void	ft_free_image(void **fr, t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (frames[i])
+	while (fr[i])
 	{
-		mlx_destroy_image(data->mlx, frames[i]);
+		mlx_destroy_image(data->mlx, fr[i]);
 		i++;
 	}
-	if (frames)
-		free(frames);
-	
+	if (fr)
+		free(fr);
 }

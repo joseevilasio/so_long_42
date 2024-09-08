@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/05 22:11:37 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:33:18 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ static void	ft_checkitems(char *line, t_data *data)
 	{
 		if (line[x] == 'P')
 		{
-			data->player->pos_h = data->height - 1;
-			data->player->pos_w = x;
+			data->plr->pos_h = data->height - 1;
+			data->plr->pos_w = x;
 			data->p++;
 		}
 		if (line[x] == 'C')
@@ -81,8 +81,8 @@ static void	ft_checkitems(char *line, t_data *data)
 			data->e++;
 		if (line[x] == 'A')
 		{
-			data->enemy->pos_h = data->height - 1;
-			data->enemy->pos_w = x;
+			data->enm->pos_h = data->height - 1;
+			data->enm->pos_w = x;
 			data->enemy_++;
 		}
 		x++;
@@ -125,7 +125,7 @@ void	ft_loadmap(char *pathname, t_data *data)
 	ft_ensure(pathname, data);
 	ft_create_matrix(pathname, data);
 	copy_map = ft_copymap(data->map, data);
-	ft_floodfill(copy_map, data, data->player->pos_w, data->player->pos_h);
+	ft_floodfill(copy_map, data, data->plr->pos_w, data->plr->pos_h);
 	if (data->ff_c != data->c || data->ff_e != 1)
 	{
 		ft_free_map(copy_map);

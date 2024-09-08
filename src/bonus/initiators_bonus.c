@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:44:48 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/06 20:59:56 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/08 18:21:49 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ void	data_init(t_data *data)
 	data->new_map = NULL;
 	data->mlx = NULL;
 	data->win = NULL;
-	data->movements = 1;
+	data->movements = 0;
 	data->img_m = NULL;
 	data->move_time = time(NULL);
-	data->player = (t_image *) malloc(sizeof(t_image));
-	data->enemy = (t_image *) malloc(sizeof(t_image));
+	data->plr = (t_image *) malloc(sizeof(t_image));
+	data->enm = (t_image *) malloc(sizeof(t_image));
 	data->backg = (t_image *) malloc(sizeof(t_image));
 	data->collect = (t_image *) malloc(sizeof(t_image));
+	if (!data->plr || !data->enm || !data->backg || !data->collect)
+		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
 }
 
 void	all_init(t_data *data, char *path)
@@ -54,7 +56,6 @@ void	all_init(t_data *data, char *path)
 	data->win = mlx_new_window(data->mlx, width, height, "Capybara World");
 	if (!data->win)
 		ft_error_handler("Error\n", ERROR_MLX, NULL, data);
-	//data->img_m = mlx_new_image(data->mlx, 150, 20);
 	enemy_image_init(data);
 	background_image_init(data);
 	player_image_init(data);

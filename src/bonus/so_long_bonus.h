@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/06 21:01:51 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/08 19:02:33 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 void	ft_error_handler(char *error, int signal, char *str, t_data *data);
 void	ft_free_data(t_data *data);
 void	ft_free_map(char **source);
-void	ft_free_image(void **frames, t_data *data);
+void	ft_free_image(void **fr, t_data *data);
 int		close_window(t_data *data, int mode);
 
 /* Loadmap & Ensure Map */
@@ -40,15 +40,16 @@ void	ft_data_init(t_data *data);
 void	ft_printmap(char **source);
 
 /* Render */
-void	background(t_data *data);
 void	put_image(t_data *data, void *img, int column, int line);
 void	put_move(t_data *data);
+void	*load_image(t_data *data, char *path, int size);
 
 /* Animations */
 void	player(t_data *data, int old_y, int old_x);
 int		enemy(t_data *data);
 void	collectibles(t_data *data);
 void	shark(t_data *data);
+void	background(t_data *data);
 
 /* Initiators */
 void	all_init(t_data *data, char *path);
