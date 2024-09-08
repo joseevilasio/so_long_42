@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/08 17:35:22 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:01:26 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ int	close_window(t_data *data, int mode)
 {
 	if (mode == 1)
 	{
-		ft_printf(" --- END ---\n");
+		ft_printf("\n --- END ---\n");
 		if (data->plr->bag > data->enm->bag)
-			ft_printf(" --- CAPYBARA WIN ---");
+			ft_printf("\n --- CAPYBARA WIN ---\n");
 		else
-			ft_printf(" --- ASH WIN ---");
+			ft_printf("\n --- ASH WIN ---\n");
 	}
 	if (mode == 2)
-		ft_printf(" --- ASH WIN ---");
+		ft_printf("\n --- ASH WIN ---\n");
 	ft_error_handler(NULL, 0, NULL, data);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
@@ -118,3 +118,12 @@ int	main(int argc, char **argv)
 		ft_error_handler(strerror(EINVAL), ERROR_ARGUMENTS, NULL, NULL);
 	return (0);
 }
+
+// Corrigir makefile tem relink
+// Alterar player para left e right
+// Tempo de inicializacao do enemy
+// Corrigir lado para que o shark nada
+// Fazer colletaveis random
+// Organizar readme
+// Refazer checks de error
+// Verificar se e obrigatorio ter enemy no mapa (leak com erro de maps)
