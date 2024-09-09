@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 21:55:58 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/08 17:33:52 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:42:18 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,12 @@ void	ft_free_data(t_data *data)
 		ft_free_image(data->plr->fr, data);
 	if (data->collect->fr)
 		ft_free_image(data->collect->fr, data);
-	if (!data->mlx)
-		free(data);
 	free(data->plr);
 	free(data->collect);
 	free(data->backg);
 	free(data->enm);
+	if (!data->mlx)
+		free(data);
 }
 
 void	ft_free_image(void **fr, t_data *data)

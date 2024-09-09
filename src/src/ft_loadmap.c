@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/31 21:32:52 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:10:37 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	ft_checkwall(char *line, t_data *data)
 	return (0);
 }
 
-static void	ft_checkitems(char *line, t_data *data)
+static int	ft_checkitems(char *line, t_data *data)
 {
 	int	x;
 
@@ -81,6 +81,7 @@ static void	ft_checkitems(char *line, t_data *data)
 			data->e++;
 		x++;
 	}
+	return (ft_checkchar(line));
 }
 
 static void	ft_ensure(char *pathname, t_data *data)
@@ -95,9 +96,8 @@ static void	ft_ensure(char *pathname, t_data *data)
 	data->width = (int) ft_strlen(line);
 	while (line)
 	{
-		if (ft_checkwall(line, data) == -1)
+		if (ft_checkwall(line, data) == -1 || ft_checkitems(line, data) == -1)
 			error = -1;
-		ft_checkitems(line, data);
 		free(line);
 		line = ft_strremove(get_next_line(fd), data);
 		if (!line)
@@ -106,9 +106,9 @@ static void	ft_ensure(char *pathname, t_data *data)
 	}
 	close(fd);
 	if (data->p != 1 || data->e != 1 || data->c < 1)
-		ft_error_handler("Map: Invalid items", ERROR_MAP, NULL, data);
+		ft_error_handler("Invalid map: Invalid items", ERROR_MAP, NULL, data);
 	if (data->height <= 1 || data->width <= 1 || error == -1)
-		ft_error_handler("Map: empty map", ERROR_MAP, NULL, data);
+		ft_error_handler("Invalid map: format", ERROR_MAP, NULL, data);
 }
 
 void	ft_loadmap(char *pathname, t_data *data)
@@ -124,7 +124,7 @@ void	ft_loadmap(char *pathname, t_data *data)
 	if (data->ff_c != data->c || data->ff_e != 1)
 	{
 		ft_free_map(copy_map);
-		ft_error_handler("Map: without exit", ERROR_MAP, NULL, data);
+		ft_error_handler("Invalid map: without exit", ERROR_MAP, NULL, data);
 	}
 	ft_free_map(copy_map);
 	data->new_map = ft_copymap(data->map, data);

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/31 21:32:27 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:11:33 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,19 @@ void	ft_floodfill(char **map, t_data *data, int x, int y)
 	ft_floodfill(map, data, x - 1, y);
 	ft_floodfill(map, data, x, y + 1);
 	ft_floodfill(map, data, x, y - 1);
+}
+
+int	ft_checkchar(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != '1' && s[i] != '0' && s[i] != 'C' && s[i] != 'P'
+			&& s[i] != 'E')
+			return (-1);
+		i++;
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/26 18:37:41 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:05:10 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	ft_loadmap(char *pathname, t_data *data);
 int		ft_open(char *pathname, t_data *data);
 void	ft_floodfill(char **map, t_data *data, int x, int y);
 char	*ft_strremove(char *str, t_data *data);
+int		ft_checkchar(char *s);
 
 /* Render */
 void	ft_render_background(t_data *data);

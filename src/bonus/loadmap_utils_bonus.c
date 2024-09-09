@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/08/31 21:33:50 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 21:23:03 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,22 @@ char	**ft_copymap(char **source, t_data *data)
 	return (map);
 }
 
-void	ft_printmap(char **source)
+int	checkchar(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] != '1' && s[i] != '0' && s[i] != 'C' && s[i] != 'P'
+			&& s[i] != 'E' && s[i] != 'A')
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+/* void	ft_printmap(char **source)
 {
 	int	i;
 
@@ -91,4 +106,4 @@ void	ft_printmap(char **source)
 		ft_printf("%s\n", source[i]);
 		i++;
 	}
-}
+} */

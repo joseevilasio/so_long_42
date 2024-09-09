@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 20:30:15 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:04:17 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int animations(t_data *data)
 	curr_time = time(NULL);
 	if (curr_time - data->move_time >= 1)
 	{
-		enemy(data); // verificar que as vezes tem delay na inicializacao
+		if (data->enm->pos_h != 0)
+			enemy(data);
 		shark(data);
 		data->backg->current_frame++;
 		data->move_time = curr_time;
@@ -127,5 +128,3 @@ int main(int argc, char **argv)
 // Corrigir makefile tem relink
 // Fazer colletaveis random
 // Organizar readme
-// Refazer checks de error
-// Verificar se e obrigatorio ter enemy no mapa (leak com erro de maps)
