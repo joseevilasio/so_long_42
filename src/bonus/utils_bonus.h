@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:38:50 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/08 19:57:15 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:18:44 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define WALL_2 "./textures/wall/wall_2.xpm"
 # define EXIT "./textures/exit.xpm"
 # define EMPTY "./textures/empty.xpm"
-# define SHARK "./textures/shark/sharkleft.xpm"
+# define SHARK "./textures/shark.xpm"
 # define COUNT "./textures/count_bar.xpm"
 
 /* Path player textures */
@@ -65,6 +65,7 @@ typedef struct s_image
 	int		len_f;
 	int		pos_h;
 	int		pos_w;
+	int		dir;
 	int		current_frame;
 	int		frame_counter;
 	int		bag;

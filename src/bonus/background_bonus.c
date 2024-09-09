@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 21:58:04 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/08 20:05:38 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:59:49 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	background_init(t_data *data)
 	data->backg->len_f = 8;
 	data->backg->pos_h = 0;
 	data->backg->pos_w = 0;
+	data->backg->dir = 0;
 	data->backg->current_frame = 0;
 	data->backg->frame_counter = 0;
 	data->backg->bag = 0;
