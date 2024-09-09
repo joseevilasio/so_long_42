@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 19:47:34 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/08 19:35:43 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:17:07 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,6 @@ void	*load_image(t_data *data, char *path, int size)
 
 	image = mlx_xpm_file_to_image(data->mlx, path, &size, &size);
 	if (!image)
-	{
-		// ft_error_handler(NULL, 0, NULL, data);
-		// //mlx_destroy_window(data->mlx, data->win);
-		// //mlx_destroy_display(data->mlx);
-		// free(data->mlx);
-		// free(data);
 		close_window(data, 0);
-		ft_printf("entrei aqui/n/n/n\n\n\n\n");
-		exit(0);
-	}
 	return (image);
 }

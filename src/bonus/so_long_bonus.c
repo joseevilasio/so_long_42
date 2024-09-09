@@ -6,13 +6,13 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 22:04:17 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:16:38 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int close_window(t_data *data, int mode)
+int	close_window(t_data *data, int mode)
 {
 	if (mode == 1)
 	{
@@ -32,9 +32,9 @@ int close_window(t_data *data, int mode)
 	exit(0);
 }
 
-int animations(t_data *data)
+int	animations(t_data *data)
 {
-	time_t curr_time;
+	time_t	curr_time;
 
 	curr_time = time(NULL);
 	if (curr_time - data->move_time >= 1)
@@ -49,10 +49,10 @@ int animations(t_data *data)
 	return (0);
 }
 
-static int move(t_data *data, int y, int x)
+static int	move(t_data *data, int y, int x)
 {
-	int old_x;
-	int old_y;
+	int	old_x;
+	int	old_y;
 
 	old_x = data->plr->pos_w;
 	old_y = data->plr->pos_h;
@@ -76,7 +76,7 @@ static int move(t_data *data, int y, int x)
 	return (1);
 }
 
-static int controller(int keysym, t_data *data)
+static int	controller(int keysym, t_data *data)
 {
 	if (keysym == XK_Escape)
 		close_window(data, 0);
@@ -94,16 +94,17 @@ static int controller(int keysym, t_data *data)
 		data->movements += move(data, data->plr->pos_h - 1, data->plr->pos_w);
 	if (keysym == XK_S || keysym == XK_s || keysym == XK_Down)
 		data->movements += move(data, data->plr->pos_h + 1, data->plr->pos_w);
-	if ((data->map[data->plr->pos_h][data->plr->pos_w] == 'E' && data->c == (data->plr->bag + data->enm->bag)))
+	if ((data->map[data->plr->pos_h][data->plr->pos_w] == 'E'
+		&& data->c == (data->plr->bag + data->enm->bag)))
 	{
 		close_window(data, 1);
 	}
 	return (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data *data;
+	t_data	*data;
 
 	srand(time(NULL));
 	if (argc == 2)
