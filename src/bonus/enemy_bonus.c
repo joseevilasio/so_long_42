@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/08 20:07:02 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:00:19 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	enemy_init(t_data *data)
 	data->enm->len_f = 6;
 	data->enm->pos_h = 0;
 	data->enm->pos_w = 0;
+	data->enm->dir = 0;
 	data->enm->current_frame = 0;
 	data->enm->frame_counter = 0;
 	data->enm->bag = 0;

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/08 22:01:26 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:22:05 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,15 @@ static int	controller(int keysym, t_data *data)
 	if (keysym == XK_Escape)
 		close_window(data, 0);
 	if (keysym == XK_A || keysym == XK_a || keysym == XK_Left)
+	{
+		data->plr->dir = 1;
 		data->movements += move(data, data->plr->pos_h, data->plr->pos_w - 1);
+	}
 	if (keysym == XK_D || keysym == XK_d || keysym == XK_Right)
+	{
+		data->plr->dir = 0;
 		data->movements += move(data, data->plr->pos_h, data->plr->pos_w + 1);
+	}
 	if (keysym == XK_W || keysym == XK_w || keysym == XK_Up)
 		data->movements += move(data, data->plr->pos_h - 1, data->plr->pos_w);
 	if (keysym == XK_S || keysym == XK_s || keysym == XK_Down)
@@ -120,9 +126,7 @@ int	main(int argc, char **argv)
 }
 
 // Corrigir makefile tem relink
-// Alterar player para left e right
 // Tempo de inicializacao do enemy
-// Corrigir lado para que o shark nada
 // Fazer colletaveis random
 // Organizar readme
 // Refazer checks de error

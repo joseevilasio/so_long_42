@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 22:23:15 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/08 20:04:52 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:00:09 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	collectibles_init(t_data *data)
 	data->collect->len_f = 5;
 	data->collect->pos_h = 0;
 	data->collect->pos_w = 0;
+	data->collect->dir = 0;
 	data->collect->current_frame = 0;
 	data->collect->frame_counter = 0;
 	data->collect->bag = 0;
