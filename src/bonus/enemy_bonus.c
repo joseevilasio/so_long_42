@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 20:00:19 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 20:29:38 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	enemy(t_data *data)
 	int	dir;
 
 	dir = rand() % 4;
+	if (data->move_time == 0)
+		put_image(data, data->enm->fr[0], data->enm->pos_w, data->enm->pos_h);
 	if (dir == LEFT)
 		enemy_move(data, data->enm->pos_h, data->enm->pos_w - 1, dir);
 	if (dir == RIGHT)
