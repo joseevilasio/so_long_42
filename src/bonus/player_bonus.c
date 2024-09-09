@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 22:14:55 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 20:02:14 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:27:14 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	player_image_init(t_data *data)
 	i = 0;
 	data->plr->fr = (void *) malloc(data->plr->len_f * sizeof(void *));
 	if (!data->plr->fr)
-		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
+		close_window(data, 0);
 	while (i < data->plr->len_f)
 	{
 		data->plr->fr[i] = NULL;

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 21:58:04 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 19:59:49 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:27:06 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	background_image_init(t_data *data)
 	i = 0;
 	data->backg->fr = (void *) malloc(data->backg->len_f * sizeof(void *));
 	if (!data->backg->fr)
-		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
+		close_window(data, 0);
 	while (i < data->backg->len_f)
 	{
 		data->backg->fr[i] = NULL;

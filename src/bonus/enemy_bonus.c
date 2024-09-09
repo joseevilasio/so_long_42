@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 20:29:38 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:26:59 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	enemy_image_init(t_data *data)
 	i = 0;
 	data->enm->fr = (void *) malloc(data->enm->len_f * sizeof(void *));
 	if (!data->enm->fr)
-		ft_error_handler("Error\n", ERROR_MALLOC, NULL, data);
+		close_window(data, 0);
 	while (i < data->enm->len_f)
 	{
 		data->enm->fr[i] = NULL;

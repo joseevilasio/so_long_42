@@ -6,12 +6,13 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:44:48 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/08 18:21:49 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/09 22:31:07 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
+void	new_collectibles
 void	data_init(t_data *data)
 {
 	data->width = 0;
