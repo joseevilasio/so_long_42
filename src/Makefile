@@ -25,6 +25,8 @@ SRCS := src/so_long.c\
 		src/loadmap_utils.c\
 		src/ft_render.c\
 
+OBJS := $(SRCS:.c=.o)
+
 SRCS_BONUS := bonus/so_long_bonus.c\
 			bonus/loadmap_bonus.c\
 			bonus/free_error_handler_bonus.c\
@@ -36,13 +38,18 @@ SRCS_BONUS := bonus/so_long_bonus.c\
 			bonus/player_bonus.c\
 			bonus/collectibles_bonus.c\
 
+OBJS_BONUS := $(SRCS_BONUS:.c=.o)
+
 all: $(NAME)
 
-$(NAME): $(LIBFT) $(MLIBX)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(MLXFLAGS) $(LIBFT)
+$(NAME): $(LIBFT) $(MLIBX) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLXFLAGS) $(LIBFT)
 
-bonus: $(LIBFT)	$(MLIBX)
-	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME) $(MLXFLAGS) $(LIBFT)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+bonus: $(LIBFT)	$(MLIBX) $(OBJS_BONUS)
+	$(CC) $(CFLAGS) $(OBJS_BONUS) -o $(NAME) $(MLXFLAGS) $(LIBFT)
 
 $(MLIBX):
 	make -C $(MLIBX_DIR)
@@ -59,3 +66,6 @@ fclean:	clean
 	rm -f $(NAME) $(MLIBX)
 
 re:	fclean all
+
+$(OBJS): src/so_long.h
+$(OBJS_BONUS): bonus/so_long_bonus.h

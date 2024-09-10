@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:38:50 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/10 19:39:48 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/10 22:17:31 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,19 @@
 # define ER1 "./textures/enemy/eright1.xpm"
 # define BLL "./textures/enemy/ball.xpm"
 
-/* Path crab textures */
+/* Path animal textures */
 # define CRAB0 "./textures/animals/crab0.xpm"
 # define CRAB1 "./textures/animals/crab1.xpm"
 # define CRAB2 "./textures/animals/crab2.xpm"
 # define CRAB3 "./textures/animals/crab3.xpm"
-# define BIRD "./textures/animals/coll.xpm"
-# define COW "./textures/animals/cow.xpm"
-# define APPLE "./textures/animals/apple.xpm"
+# define FOX0 "./textures/animals/fox0.xpm"
+# define FOX1 "./textures/animals/fox1.xpm"
+# define FOX2 "./textures/animals/fox2.xpm"
+# define FOX3 "./textures/animals/fox3.xpm"
+# define CHK0 "./textures/animals/chk0.xpm"
+# define CHK1 "./textures/animals/chk1.xpm"
+# define CHK2 "./textures/animals/chk2.xpm"
+# define CHK3 "./textures/animals/chk3.xpm"
 
 typedef struct s_image
 {
