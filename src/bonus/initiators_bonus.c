@@ -6,13 +6,40 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 15:44:48 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 22:31:07 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:57:35 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	new_collectibles
+void	new_collectibles(t_data *data)
+{
+	int		li;
+	int		col;
+	int		new;
+	char	*animals;
+
+	li = 0;
+	new = 0;
+	animals = "CVN";
+	while (data->map[li])
+	{
+		col = 0;
+		while (data->map[li][col])
+		{
+			if (data->map[li][col] == 'C')
+			{
+				data->map[li][col] = animals[new];
+				new++;
+			}
+			if (new == 3)
+				new = 0;
+			col++;
+		}
+		li++;
+	}
+}
+
 void	data_init(t_data *data)
 {
 	data->width = 0;
@@ -61,4 +88,5 @@ void	all_init(t_data *data, char *path)
 	background_image_init(data);
 	player_image_init(data);
 	collectibles_image_init(data);
+	new_collectibles(data);
 }

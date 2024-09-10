@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 22:26:59 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:42:16 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	enemy_move(t_data *data, int y, int x, int dir)
 	old_y = data->enm->pos_h;
 	if (data->new_map[y][x] == '1')
 		return (0);
-	if (data->map[y][x] == 'C')
+	if (data->map[y][x] == 'C' || data->map[y][x] == 'V' || data->map[y][x] == 'N')
 	{
 		data->map[y][x] = 'B';
 		data->enm->bag++;

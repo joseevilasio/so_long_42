@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:38:50 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 20:18:44 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:39:48 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@
 # define BLL "./textures/enemy/ball.xpm"
 
 /* Path crab textures */
-# define CRAB0 "./textures/crab/crab0.xpm"
-# define CRAB1 "./textures/crab/crab1.xpm"
-# define CRAB2 "./textures/crab/crab2.xpm"
-# define CRAB3 "./textures/crab/crab3.xpm"
+# define CRAB0 "./textures/animals/crab0.xpm"
+# define CRAB1 "./textures/animals/crab1.xpm"
+# define CRAB2 "./textures/animals/crab2.xpm"
+# define CRAB3 "./textures/animals/crab3.xpm"
+# define BIRD "./textures/animals/coll.xpm"
+# define COW "./textures/animals/cow.xpm"
+# define APPLE "./textures/animals/apple.xpm"
 
 typedef struct s_image
 {

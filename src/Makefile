@@ -12,42 +12,50 @@ MLXFLAGS := -L ./libs/minilibx-linux -lm -lmlx -Ilmlx -lXext -lX11
 
 MLIBX_DIR := libs/minilibx-linux
 
-MLIBX := minilibx
+MLIBX := libs/minilibx-linux/libmlx.a
 
-LIBFT := libs/libft
+LIBFT := libs/libft/libft.a
 
-SRCS := src/so_long.c src/ft_loadmap.c src/so_long_utils.c\
-	src/free_error_handler.c src/loadmap_utils.c src/ft_render.c\
+LIBFT_DIR := libs/libft
 
-SRCS_BONUS := bonus/so_long_bonus.c bonus/loadmap_bonus.c\
-	bonus/free_error_handler_bonus.c bonus/initiators_bonus.c\
-	bonus/loadmap_utils_bonus.c bonus/render_bonus.c bonus/enemy_bonus.c\
-	bonus/background_bonus.c bonus/player_bonus.c bonus/collectibles_bonus.c \
+SRCS := src/so_long.c\
+		src/ft_loadmap.c\
+		src/so_long_utils.c\
+		src/free_error_handler.c\
+		src/loadmap_utils.c\
+		src/ft_render.c\
 
-all:	$(NAME)
+SRCS_BONUS := bonus/so_long_bonus.c\
+			bonus/loadmap_bonus.c\
+			bonus/free_error_handler_bonus.c\
+			bonus/initiators_bonus.c\
+			bonus/loadmap_utils_bonus.c\
+			bonus/render_bonus.c\
+			bonus/enemy_bonus.c\
+			bonus/background_bonus.c\
+			bonus/player_bonus.c\
+			bonus/collectibles_bonus.c\
 
-# $(OBJS): $(SRCS)
-# 	$(CC) $(CFLAGS) -c $*.c -o $@
+all: $(NAME)
 
-# # $(OBJS_BONUS): $(SRCS_BONUS)
-# # 	$(CC) $(CFLAGS) -c $*.c -o $@
+$(NAME): $(LIBFT) $(MLIBX)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(MLXFLAGS) $(LIBFT)
 
-$(NAME):
-	make all -C $(LIBFT)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(MLXFLAGS) $(LIBFT)/libft.a
-
-bonus:
-	make all -C $(LIBFT)
-	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME) $(MLXFLAGS) $(LIBFT)/libft.a
+bonus: $(LIBFT)	$(MLIBX)
+	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(NAME) $(MLXFLAGS) $(LIBFT)
 
 $(MLIBX):
 	make -C $(MLIBX_DIR)
 
+$(LIBFT):
+	make all -C $(LIBFT_DIR)
+
 clean:
-	make clean -C $(LIBFT)
+	make clean -C $(LIBFT_DIR)
+	make clean -C $(MLIBX_DIR)
 
 fclean:	clean
-	make fclean -C $(LIBFT)
-	rm -f $(NAME)
+	make fclean -C $(LIBFT_DIR)
+	rm -f $(NAME) $(MLIBX)
 
 re:	fclean all

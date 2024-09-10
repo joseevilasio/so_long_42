@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 22:17:35 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:47:06 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ void	ft_loadmap(char *pathname, t_data *data)
 	ft_floodfill(copy_map, data, data->plr->pos_w, data->plr->pos_h);
 	if (data->ff_c != data->c || data->ff_e != 1)
 	{
+		ft_printmap(copy_map);
 		ft_free_map(copy_map);
 		ft_error_handler("Invalid map: without exit", ERROR_MAP, NULL, data);
 	}

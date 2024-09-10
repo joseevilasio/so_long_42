@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/29 20:36:31 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 21:23:03 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:00:15 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	checkchar(char *s)
 	return (0);
 }
 
-/* void	ft_printmap(char **source)
+void	ft_printmap(char **source)
 {
 	int	i;
 
@@ -106,4 +106,4 @@ int	checkchar(char *s)
 		ft_printf("%s\n", source[i]);
 		i++;
 	}
-} */
+}
