@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 19:38:50 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/10 22:17:31 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:28:26 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,18 +34,18 @@
 # define DOWN 3
 
 /* Path background textures */
-# define WALL_0 "./textures/wall/wall_00.xpm"
-# define WALL_1 "./textures/wall/wall_1.xpm"
-# define WALL_2 "./textures/wall/wall_2.xpm"
-# define EXIT "./textures/exit.xpm"
-# define EMPTY "./textures/empty.xpm"
-# define SHARK "./textures/shark.xpm"
-# define COUNT "./textures/count_bar.xpm"
+# define WALL_0 "./textures/background/wall_0.xpm"
+# define WALL_1 "./textures/background/wall_1.xpm"
+# define WALL_2 "./textures/background/wall_2.xpm"
+# define EXIT "./textures/background/exit.xpm"
+# define EMPTY "./textures/background/empty.xpm"
+# define SHARK "./textures/background/shark.xpm"
+# define COUNT "./textures/background/count_bar.xpm"
 
 /* Path player textures */
-# define PLAYER "./textures/player.xpm"
-# define PLAYER_1 "./textures/player_exit.xpm"
-# define PLAYER_2 "./textures/player_left.xpm"
+# define PLAYER "./textures/player/player.xpm"
+# define PLAYER_1 "./textures/player/player_exit.xpm"
+# define PLAYER_2 "./textures/player/player_left.xpm"
 
 /* Path enemy textures */
 # define EB1 "./textures/enemy/eback1.xpm"

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 22:51:59 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/10 19:47:06 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:22:48 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	ft_ensure(char *pathname, t_data *data)
 		data->height++;
 	}
 	close(fd);
-	if (data->p != 1 || data->e != 1 || data->c < 1)
+	if (data->p != 1 || data->e != 1 || data->c < 1 || data->enemy_ != 1)
 		ft_error_handler("Invalid map: items", ERROR_MAP, NULL, data);
 	if (data->height <= 1 || data->width <= 1 || error == -1)
 		ft_error_handler("Invalid map: format", ERROR_MAP, NULL, data);
@@ -128,7 +128,6 @@ void	ft_loadmap(char *pathname, t_data *data)
 	ft_floodfill(copy_map, data, data->plr->pos_w, data->plr->pos_h);
 	if (data->ff_c != data->c || data->ff_e != 1)
 	{
-		ft_printmap(copy_map);
 		ft_free_map(copy_map);
 		ft_error_handler("Invalid map: without exit", ERROR_MAP, NULL, data);
 	}

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 22:33:20 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/10 19:42:16 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:30:35 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,8 @@ int	enemy_move(t_data *data, int y, int x, int dir)
 	old_y = data->enm->pos_h;
 	if (data->new_map[y][x] == '1')
 		return (0);
-	if (data->map[y][x] == 'C' || data->map[y][x] == 'V' || data->map[y][x] == 'N')
+	if (data->map[y][x] == 'C' || data->map[y][x] == 'V'
+		|| data->map[y][x] == 'N')
 	{
 		data->map[y][x] = 'B';
 		data->enm->bag++;
@@ -96,8 +97,6 @@ int	enemy(t_data *data)
 	int	dir;
 
 	dir = rand() % 4;
-	if (data->move_time == 0)
-		put_image(data, data->enm->fr[0], data->enm->pos_w, data->enm->pos_h);
 	if (dir == LEFT)
 		enemy_move(data, data->enm->pos_h, data->enm->pos_w - 1, dir);
 	if (dir == RIGHT)
@@ -106,5 +105,6 @@ int	enemy(t_data *data)
 		enemy_move(data, data->enm->pos_h - 1, data->enm->pos_w, dir);
 	if (dir == DOWN)
 		enemy_move(data, data->enm->pos_h + 1, data->enm->pos_w, dir);
+	data->enm->current_frame++;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/10 19:43:12 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:30:57 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	animations(t_data *data)
 	time_t	curr_time;
 
 	curr_time = time(NULL);
+	if (data->enm->current_frame == 0)
+		put_image(data, data->enm->fr[0], data->enm->pos_w, data->enm->pos_h);
 	if (curr_time - data->move_time >= 1)
 	{
 		if (data->enm->pos_h != 0)
@@ -58,7 +60,8 @@ static int	move(t_data *data, int y, int x)
 	old_y = data->plr->pos_h;
 	if (data->new_map[y][x] == '1')
 		return (0);
-	if (data->map[y][x] == 'C' || data->map[y][x] == 'V' || data->map[y][x] == 'N')
+	if (data->map[y][x] == 'C' || data->map[y][x] == 'V'
+		|| data->map[y][x] == 'N')
 	{
 		data->map[y][x] = '0';
 		data->plr->bag++;
@@ -125,7 +128,3 @@ int	main(int argc, char **argv)
 		ft_error_handler(strerror(EINVAL), ERROR_ARGUMENTS, NULL, NULL);
 	return (0);
 }
-
-// Corrigir makefile tem relink
-// Fazer colletaveis random (organizar animacoes, logica pronta)
-// Organizar readme

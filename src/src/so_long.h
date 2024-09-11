@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/09 22:05:10 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:25:50 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 # define ERROR_MAP 203
 
 /* Path textures */
-# define WALL_0 "./textures/wall_0.xpm"
-# define WALL_1 "./textures/wall_1.xpm"
-# define WALL_2 "./textures/wall_2.xpm"
-# define COLL "./textures/coll.xpm"
-# define PLAYER "./textures/player.xpm"
-# define PLAYER_1 "./textures/player_exit.xpm"
-# define EXIT "./textures/exit.xpm"
-# define EMPTY "./textures/empty.xpm"
+# define WALL_0 "./textures/background/wall_0.xpm"
+# define WALL_1 "./textures/background/wall_1.xpm"
+# define WALL_2 "./textures/background/wall_2.xpm"
+# define EMPTY "./textures/background/empty.xpm"
+# define EXIT "./textures/background/exit.xpm"
+# define COLL "./textures/background/chk3.xpm"
+# define PLAYER "./textures/player/player.xpm"
+# define PLAYER_1 "./textures/player/player_exit.xpm"
 # define PXL 32
 
 /* Struct for initial infor about map */

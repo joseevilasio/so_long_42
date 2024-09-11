@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:28:56 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/10 19:00:39 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/11 18:30:22 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strremove(char *str, t_data *data);
 char	**ft_copymap(char **source, t_data *data);
 void	ft_data_init(t_data *data);
 int		checkchar(char *s);
-void	ft_printmap(char **source);
+/* void	ft_printmap(char **source); */
 
 /* Render */
 void	put_image(t_data *data, void *img, int column, int line);
