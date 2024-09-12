@@ -6,7 +6,7 @@
 /*   By: joneves- <joneves-@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/27 14:27:35 by joneves-          #+#    #+#             */
-/*   Updated: 2024/09/11 19:30:57 by joneves-         ###   ########.fr       */
+/*   Updated: 2024/09/12 19:08:39 by joneves-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	close_window(t_data *data, int mode)
 	{
 		ft_printf("\n --- END ---\n");
 		if (data->plr->bag > data->enm->bag)
-			ft_printf("\n --- CAPYBARA WIN ---\n");
+			ft_printf("\n --- CAPYBARA WIN'S ---\n");
 		else
-			ft_printf("\n --- ASH WIN ---\n");
+			ft_printf("\n --- ASH WIN'S ---\n");
 	}
 	if (mode == 2)
-		ft_printf("\n --- ASH WIN ---\n");
+		ft_printf("\n --- ASH WIN'S ---\n");
 	ft_error_handler(NULL, 0, NULL, data);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
