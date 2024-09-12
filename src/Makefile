@@ -1,8 +1,6 @@
-.PHONY: all $(NAME) bonus clean fclean re
-
 NAME := so_long
 
-BONUS := so_long_bonus
+NAME_BONUS := so_long_bonus
 
 CC := cc
 
@@ -38,22 +36,21 @@ SRCS_BONUS := bonus/so_long_bonus.c\
 			bonus/player_bonus.c\
 			bonus/collectibles_bonus.c\
 
-all: $(NAME)
+$(NAME): $(LIBFT) $(MLIBX) $(SRCS)
+	$(CC) $(CFLAGS) $(SRCS) $(MLXFLAGS) $(LIBFT) -o $(NAME)
 
-$(NAME): $(LIBFT) $(MLIBX) $(OBJS)
-	$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(MLXFLAGS) $(LIBFT)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-bonus: $(LIBFT)	$(MLIBX) $(OBJS_BONUS)
-	$(CC) $(CFLAGS) $(SRCS_BONUS) -o $(BONUS) $(MLXFLAGS) $(LIBFT)
+all: $(NAME) bonus
 
 $(MLIBX):
 	make -C $(MLIBX_DIR)
 
 $(LIBFT):
-	make all -C $(LIBFT_DIR)
+	make -C $(LIBFT_DIR)
+
+bonus: $(NAME_BONUS) 
+
+$(NAME_BONUS): $(LIBFT)	$(MLIBX) $(SRCS_BONUS)
+	$(CC) $(CFLAGS) $(SRCS_BONUS) $(MLXFLAGS) $(LIBFT) -o $(NAME_BONUS) 
 
 clean:
 	make clean -C $(LIBFT_DIR)
@@ -61,6 +58,10 @@ clean:
 
 fclean:	clean
 	make fclean -C $(LIBFT_DIR)
-	rm -f $(NAME) $(MLIBX) $(BONUS)
+	rm -f $(NAME) 
+	rm -f $(NAME_BONUS)
+	rm -f $(MLIBX)
 
 re:	fclean all
+
+.PHONY: all bonus clean fclean re
