@@ -20,6 +20,16 @@ The game features dynamic maps, allowing players to create their own levels as l
 3. The map must allow the player to collect all items and reach the exit.
 4. The map’s borders must always be made of 1 (walls).
 
+Example:
+```
+11111111111
+1E000000001
+10100101001
+10100100101
+10000P000C1
+11111111111
+```
+
 ## Build
 To compile the library, simply use the makefile targets on the command line within the 'src' folder.
 
